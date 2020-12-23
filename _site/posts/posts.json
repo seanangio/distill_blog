@@ -1,0 +1,329 @@
+[
+  {
+    "path": "posts/2019-05-08-dashboards/",
+    "title": "Dashboards with shinydashboard & ggiraph",
+    "description": "Explore how access to electricity in India varies with respect to latrine access at state and district levels through a scatterplot, dumbbell plot and a bivariate bubble map.",
+    "author": [],
+    "date": "2019-05-08",
+    "categories": [
+      "shiny",
+      "shinydashboard",
+      "sf",
+      "ggiraph",
+      "geospatial"
+    ],
+    "contents": "\n\nContents\nDistrict-level scatterplot across time\nDumbbell plots\nBivariate Bubble Map\n\nThe app linked below uses the {shinydashboard} and {ggiraph} packages to create an interactive visualization of Indian electricity and latrine access data.\nhttps://seanangio.shinyapps.io/shinydash/\nYou can also find its Github repo.\nWhile two previous iterations using this dataset focused on various geospatial representations, this project seeks to shed light on the question of how access to electricity and latrines vary with respect to each other. To what extent do high performers in electricity access also score well in latrine access? How do these metrics vary over time? Across different societal groups? Among urban vs. rural households? At state and district levels? In particular geographic regions?\nThe vastly uneven population counts across states and districts led me to choose visualizations that allow a raw count like population to be mapped to a size aesthetic, specifically a scatterplot, a dumbbell plot, and a bivariate choropleth. Of course, each has their own particular strengths and weaknesses.\nDistrict-level scatterplot across time\nThe scatterplot below is an example of how districts in India have improved their access to electricity and latrines over three decades, but have done so at significantly different rates. It is also interesting to examine the distribution of points. Generally, electricity rates are greater than latrine rates, but this is not exclusively the case.\n\n\n\nMoreover, the dotted lines showing the All-India averages for the selected data divides the plane into four quadrants, identifying states or districts above or below the country average. We might expect to see the top right and bottom left quadrants: places that either do well or do poorly in both electricity and latrine access. The bottom right quadrant is also fairly easy to understand because electricity access tends to exceed latrine access, as demonstrated most vividly by the dumbbell plot. The top left quadrant however, those cases with above average access to latrines but below average access to electricity, are particularly interesting. I do not have any strong intuition for what is happening in this quadrant.\nDumbbell plots\nThe state dumbbell plot below is well suited to showing the gap between a state’s household rate of access to electricity versus its rate of access to latrines. Dotted lines highlight cases where this relationship is reversed, and the rate of latrine access actually exceeds that of electricity.\n\n\n\nThis plot above is busy, but readable at the state level. However, we can dive deeper into any particular state using the geographic filter. The plot below shows the same data for districts in the state of West Bengal.\n\n\n\nBivariate Bubble Map\nPrevious iterations of this project have used choropleths to map the household rate of access to electricity or latrines. However, depending on the underlying data, we would be unable to map both of these metrics simultaneously.\nA bivariate color scheme, however, does enable us to track two variables at the same time. Although we have much less precision in any one category, we can place states or districts into a two-dimensional color bin instead of a typical one-dimensional scale.\n\n\n\nAt the district level, bubbles can become quite crowded, but if we filter to a particular state or region, we can observe the data more clearly, as done here for districts in the Northeast states.\n\n\n\n\n\n\n",
+    "preview": "posts/2019-05-08-dashboards/img/featured.png",
+    "last_modified": "2020-12-21T21:48:40-05:00",
+    "input_file": {},
+    "preview_width": 882,
+    "preview_height": 672
+  },
+  {
+    "path": "posts/2019-03-25-comparative-thematic-mapping-with-mapdeck/",
+    "title": "Comparative Thematic Mapping with Mapdeck",
+    "description": "Compare mapping styles like a choropleth, dot density map, proportional symbols map, and 3D choropleth using Indian electricity and latrine access data",
+    "author": [],
+    "date": "2019-03-25",
+    "categories": [
+      "shiny",
+      "mapdeck",
+      "sf",
+      "geospatial"
+    ],
+    "contents": "\n\nContents\nChoropleths\nDot density maps\nProportional symbols maps\n3D choropleths\n\nThe app linked below uses the {mapdeck} library to compare common thematic mapping styles using Indian electricity and latrine access data. These styles include a choropleth, a dot density map, a proportional symbols map, and a 3D choropleth.\nhttps://shiny.socialcops.com/thematic_mapping/\nYou can also find its Github repo.\nA brief summary of pros and cons of these thematic maps is below. For a fuller treatment, please see my SocialCops blog post on this topic.\nChoropleths\nA choropleth gives the simplest view of the spatial distribution of a standardized rate, but conceals the vastly-different underlying population counts.\nChoropleth of Indian household electricity access (1991-2011)\n\n\n\nDot density maps\nA dot density map provides a method to spatially visualize clusters of a raw count, while sacrificing the ability to retrieve numeric data.\nDot density map comparing urban and rural households having access to both electricity and latrines (2011)\n\n\n\nProportional symbols maps\nA proportional symbols map can communicate both a standardized rate and a raw count through the color and size aesthetics, yet congestion is often a dilemma.\nProportional symbols map depicting household latrine access (1991-2011)\n\n\n\n3D choropleths\nA 3D choropleth can map a rate and a raw count, while preserving the original geographic shapes, but at the cost of visual clarity.\n2011 households having access to neither electricity nor a latrine\n\n\n\n\n\n\n",
+    "preview": "posts/2019-03-25-comparative-thematic-mapping-with-mapdeck/img/featured.png",
+    "last_modified": "2020-12-21T21:50:04-05:00",
+    "input_file": {},
+    "preview_width": 714,
+    "preview_height": 736
+  },
+  {
+    "path": "posts/2019-01-30-animated-and-interactive-maps-in-r/",
+    "title": "Animated and Interactive Maps in R",
+    "description": "Tutorial for creating animated maps using packages like {tmap} and {gganimate} and interactive maps using packages like {ggiraph}, {mapview}, {leaflet} and {plotly}",
+    "author": [],
+    "date": "2019-01-30",
+    "categories": [
+      "tmap",
+      "sf",
+      "gganimate",
+      "mapview",
+      "leaflet",
+      "plotly",
+      "ggiraph",
+      "crosstalk",
+      "shiny"
+    ],
+    "contents": "\nIn support of the Social Cops Introduction to GIS in R free online course, I wrote this lesson on creating animated and interactive maps in R. Find it at the link below:\nhttps://socialcops.com/courses/introduction-to-gis-r/lesson4-animated-interactive-maps/\nIt includes many examples like this:\n\n\n\nSource: Social Cops Introduction to GIS in R course\n\n\n\n",
+    "preview": "posts/2019-01-30-animated-and-interactive-maps-in-r/img/featured.png",
+    "last_modified": "2020-12-16T18:14:13-05:00",
+    "input_file": {},
+    "preview_width": 596,
+    "preview_height": 432
+  },
+  {
+    "path": "posts/2019-01-29-static-maps-in-r/",
+    "title": "Static Maps in R",
+    "description": "Tutorial for creating static choropleths and cartograms using packages like {tmap}, {ggplot2}, {cartogram}, {geogrid} and {geofacet}",
+    "author": [],
+    "date": "2019-01-29",
+    "categories": [
+      "tmap",
+      "sf",
+      "ggplot2",
+      "cartogram",
+      "geogrid",
+      "geofacet"
+    ],
+    "contents": "\nIn support of the Social Cops Introduction to GIS in R free online course, I wrote this lesson on creating static maps in R. Find it at the link below:\nhttps://socialcops.com/courses/introduction-to-gis-r/lesson3-static-maps/\n\n\n\n\n\n\n",
+    "preview": "posts/2019-01-29-static-maps-in-r/img/featured.png",
+    "last_modified": "2020-12-21T21:43:05-05:00",
+    "input_file": {},
+    "preview_width": 1344,
+    "preview_height": 960
+  },
+  {
+    "path": "posts/2019-01-28-spatial-subsetting-in-r/",
+    "title": "Spatial Subsetting in R",
+    "description": "Learn different topological relations to spatially subset data via the {sf} package",
+    "author": [],
+    "date": "2019-01-28",
+    "categories": [
+      "sf",
+      "leaflet",
+      "ggplot2",
+      "tidycensus",
+      "tigris",
+      "geospatial"
+    ],
+    "contents": "\nIn support of Lesson 5 of the Social Cops Introduction to GIS in R online course, I created a shiny app to demonstrate the concept of spatial subsetting using median household income data from the Philadelphia metropolitan area. Find the app at the link below.\nhttps://shiny.socialcops.com/spatialsubset/\nThe full lesson on spatial subsetting can be found here.\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2019-01-28-spatial-subsetting-in-r/img/featured.png",
+    "last_modified": "2020-12-21T18:48:20-05:00",
+    "input_file": {},
+    "preview_width": 1425,
+    "preview_height": 775
+  },
+  {
+    "path": "posts/2018-12-14-interactive-choropleths-with-shiny-and-leaflet/",
+    "title": "Interactive Choropleths with Shiny and Leaflet",
+    "description": "Explore electricity, latrine and water access data from the Indian Census",
+    "author": [],
+    "date": "2018-12-14",
+    "categories": [
+      "sf",
+      "shiny",
+      "leaflet",
+      "ggplot2",
+      "geospatial"
+    ],
+    "contents": "\nThe app linked below is an interactive visualization of 1991-2011 Indian Census data of Household Access to Electricity, Latrines and Water.\nhttps://shiny.socialcops.com/gisvector/\nA full exploration of the processes behind it can be found on the Social Cops blog here.\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2018-12-14-interactive-choropleths-with-shiny-and-leaflet/img/featured.png",
+    "last_modified": "2020-12-16T21:48:28-05:00",
+    "input_file": {},
+    "preview_width": 1059,
+    "preview_height": 708
+  },
+  {
+    "path": "posts/2018-12-13-zoom-triggered-actions-in-leaflet-and-shiny/",
+    "title": "Zoom-Triggered Actions in Leaflet and Shiny",
+    "description": "Explore median household income data in the Delaware Valley at various levels of scope",
+    "author": [],
+    "date": "2018-12-13",
+    "categories": [
+      "sf",
+      "leaflet",
+      "shiny",
+      "ggplot2",
+      "tigris",
+      "tidycensus",
+      "geospatial"
+    ],
+    "contents": "\nThis is a simple project demonstrating how to trigger actions in Shiny-Leaflet projects using the zoom level. Given a zoom level, the map displays the corresponding state, county or census tract shapes. Find the app at the link below.\nhttps://seanangio.shinyapps.io/dv_income/\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2018-12-13-zoom-triggered-actions-in-leaflet-and-shiny/img/featured.png",
+    "last_modified": "2020-12-16T21:50:39-05:00",
+    "input_file": {},
+    "preview_width": 1128,
+    "preview_height": 658
+  },
+  {
+    "path": "posts/2018-08-31-generate-choropleths-and-cartograms-in-shiny/",
+    "title": "Generate Choropleths and Cartograms in Shiny",
+    "description": "Visualize India's states through a range of geospatial representations",
+    "author": [],
+    "date": "2018-08-31",
+    "categories": [
+      "sf",
+      "ggiraph",
+      "shiny",
+      "cartogram",
+      "geogrid",
+      "geospatial"
+    ],
+    "contents": "\nIn support of Lesson 4 of the Social Cops Introduction to GIS in R online course, I created a shiny app to allow users to experiment with different geospatial representations, such as choropleths, cartograms and hexbin maps, using basic population and economic data from India’s states. Find the app at the button above or link below.\nhttps://shiny.socialcops.com/indiastates/\nThe full lesson can be found here.\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2018-08-31-generate-choropleths-and-cartograms-in-shiny/img/featured.png",
+    "last_modified": "2020-12-21T18:51:50-05:00",
+    "input_file": {},
+    "preview_width": 807,
+    "preview_height": 563
+  },
+  {
+    "path": "posts/2018-08-09-plotting-with-pygal/",
+    "title": "Plotting with Pygal",
+    "description": "An introduction to Python’s Pygal plotting library",
+    "author": [],
+    "date": "2018-08-09",
+    "categories": [
+      "python",
+      "pygal"
+    ],
+    "contents": "\nIn order to brush up on my Python skills, I recently completed the Introduction to Python Scripting Specialization on Coursera from Rice University. Four brief courses introduce Python Programming Essentials, Data Representations, Data Analysis and Data Visualization.\nThe specialization requires writing short Python scripts of a few specified functions, each assessed by a machine grader. The final projects in the Data Visualization course introduce the Pygal plotting library.\nOne of these projects requires unifying World Bank GDP data with Pygal country codes in order to construct a world choropleth for a given year. Below is one example plot output. Although the built-in tooltips are nice (not in the image below), the default color palette makes it difficult to easily distinguish differences in GDP values, even after converting to a log scale.\n\n\n\nThe penultimate project required constructing line plots of World Bank GDP data for a given selection of countries, again using the Pygal plotting library.\n\n\n\nMy scripts for producing these plots can be found in the GitHub repo.\nWhile these scripts recreated the required visualizations, they should not be considered publication-ready. In the map for instance, the legend categorizes the differences between countries having GDP data and those missing, but there is no explanation of what the shades of red represent. The “Missing from World Bank Data” label is also cut-off. Moreover, the tooltips give GDP values with too many decimal points but no sense of units. It also does not utilize space well. The legend could likely fit in the bottom left corner closer to South America, and there could be less space between the title and the map itself.\nThe line plot also suffers from poor formatting of numeric values in the tooltip and y-axis. Placing the legend on the right hand side (ggplot2’s default) would also make better use of space.\n\n\n\n",
+    "preview": "posts/2018-08-09-plotting-with-pygal/img/featured.png",
+    "last_modified": "2020-12-21T18:53:39-05:00",
+    "input_file": {},
+    "preview_width": 722,
+    "preview_height": 415
+  },
+  {
+    "path": "posts/2018-06-21-mapping-walmarts-growth/",
+    "title": "Mapping Walmart's Growth",
+    "description": "Recreating a D3 visualization of Walmart’s US growth in R with {gganimate}",
+    "author": [],
+    "date": "2018-06-21",
+    "categories": [
+      "gganimate"
+    ],
+    "contents": "\n\nContents\nReading in the Data\nFirst Plot\nFirst Animation\nLine Plot\nMonthly Growth Animation\nInvestigating High Months\n\nMike Bostock recently posted a D3 visualization of the growth of Walmart locations in the US. I wanted to recreate it in R, animating it with the gganimate package, and do a brief investigation.\n\nN.B.: This post was created with the original gganimate API.\n\nReading in the Data\nThe original D3 visualization can be found here, and the original data he used comes from here.\n\n\nlibrary(tidyverse)\n\ndata <- \"https://gist.githubusercontent.com/mbostock/4330486/raw/fe47cd0f43281cae3283a5b397f8f0118262bf55/walmart.tsv\"\n\nwalmart <- read_csv2(data) %>%\n    separate(col = \"0\\t1\\tdate\", into = c(\"lon\", \"lat\", \"estab\"), sep = \"\\t\") %>%\n    mutate(\n        lon = as.numeric(lon),\n        lat = as.numeric(lat),\n        estab = lubridate::mdy(estab)\n    ) %>%\n    arrange(estab) %>%\n    rowid_to_column(\"number\")\n\n\n\nFirst Plot\nAfter reading in the data, we can make a first plot of all locations with the correct map projection.\n\n\nlibrary(maps)\nlibrary(ggthemes)\nstates <- map_data(\"state\")\n\nggplot() +\n    geom_polygon(data = states, aes(x = long, y = lat, group = group),\n                 fill = \"grey90\", color = \"white\") +\n    coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n    geom_point(data = walmart, aes(x = lon, y = lat), \n               size = 1.5, alpha = 0.8, shape = 1) +\n    theme_map() +\n    ggtitle(\"Walmart's Growth\")\n\n\n\n\n\n\nFirst Animation\nNow that we have a plot that looks quite similar to the final graphic, let’s animate it using the gganimate package. To plot current points in the animation in red, I just plotted the data twice, in one case setting the aesthetic cumulative = TRUE and in the other cumulative = FALSE. We can save the output as a gif.\n\n\nlibrary(animation)\nlibrary(gganimate)\n\nwal_ani <- ggplot() +\n    geom_polygon(data = states, aes(x = long, y = lat, group = group),\n                 fill = \"grey90\", color = \"white\") +\n    coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n    theme_map() +\n    # plot first location\n    geom_point(data = filter(walmart, number == 1), \n               aes(x = lon, y = lat), color = \"blue\", size = 1.5) +\n    # plot all others\n    geom_point(data = filter(walmart, number != 1),\n               aes(x = lon, y = lat, frame = estab, cumulative = TRUE), \n               size = 1.5, alpha = 0.8, shape = 1) +\n    # plot red point when added\n    geom_point(data = filter(walmart, number != 1),\n               aes(x = lon, y = lat, frame = estab, cumulative = FALSE), \n               size = 1.5, color = \"red\") +\n    ggtitle(\"Walmart's Growth\")\n\nani.options(ani.width = 1280, ani.height = 720, interval = 0.1)\ngganimate(wal_ani, filename = \"walmart.gif\")\n\n\n\n\n\n\nIt is interesting to note the strong clustering of locations near the original establishment in Arkansas. Rather than spreading geographically wide, the approach to expansion definitely seems to favor a more gradual regional growth expanding from the origin.\nLine Plot\nA downside of this style of animation is that it can be difficult to discern the pace of the growth. As the plot below shows, it is hardly linear.\n\n\nggplot(walmart, aes(x = estab, y = number)) + \n    geom_line() +\n    scale_y_continuous(\"No. of Locations\", labels = scales::comma) +\n    scale_x_date(\"\") +\n    ggtitle(\"Growth of Walmart Locations Over Time\")\n\n\n\n\n\n\nMonthly Growth Animation\nI can try to account for this in the animation by rounding dates to the nearest month and adding any empty months to the dataset.\n\n\nlibrary(lubridate)\nwalmart <- walmart %>% \n    mutate(rdate = round_date(estab, unit = \"month\")) \n\n# join in empty months\nwalmart_mon <- walmart %>%\n    right_join(\n        as_tibble(seq(min(walmart$rdate), max(walmart$rdate), by = 'month')),\n        by = c(\"rdate\" = \"value\")\n    ) %>%\n    mutate(\n        lon = ifelse(is.na(lon), 0, lon),\n        lat = ifelse(is.na(lat), 0, lat)\n        )\n\n\n\nNow the animation below shows monthly growth, which gives a slightly better impression of the time dimension of the growth.\n\n\nwal_ani_mon <- ggplot() +\n    geom_polygon(data = states, aes(x = long, y = lat, group = group),\n                 fill = \"grey90\", color = \"white\") +\n    coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n    theme_map() +\n    # plot first location\n    geom_point(data = filter(walmart_mon, number == 1), \n               aes(x = lon, y = lat), color = \"blue\", size = 1.5) +\n    # plot all others\n    geom_point(data = filter(walmart_mon, number != 1),\n               aes(x = lon, y = lat, frame = rdate, cumulative = TRUE), \n               size = 1.5, alpha = 0.8, shape = 1) +\n    # plot red point when added\n    geom_point(data = filter(walmart_mon, number != 1),\n               aes(x = lon, y = lat, frame = rdate, cumulative = FALSE), \n               size = 1.5, color = \"red\") +\n    ggtitle(\"Walmart's Monthly Growth\")\n\nani.options(ani.width = 1280, ani.height = 720, interval = 0.1)\ngganimate(wal_ani_mon, filename = \"walmart_mon.gif\")\n\n\n\n\n\n\nInvestigating High Months\nIn the monthly animation, you will notice one especially large flash where a substantial number of locations opened in a single month. In the table below, we can see the months with the greatest number of new locations opening.\nDate\nLocations Opened\nJuly 1981\n88\nFeb 2004\n42\nFeb 2006\n37\nFeb 1991\n36\nFeb 2001\n36\nDid 88 new Walmarts open in July 1981 alone? If we plot Walmart’s growth up to this point, and mark these locations in red, we can see that this month would have been a really big month for the company, particularly making inroads east of Arkansas.\n\n\nggplot() +\n    geom_polygon(data = states, aes(x = long, y = lat, group = group),\n                 fill = \"grey90\", color = \"white\") +\n    coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n    geom_point(data = filter(walmart, rdate < as.Date(\"1981-07-01\")), \n               aes(x = lon, y = lat), \n               size = 1.5, alpha = 0.8, shape = 1) +\n    geom_point(data = filter(walmart, rdate == as.Date(\"1981-07-01\")), \n               aes(x = lon, y = lat), \n               size = 1.5, color = \"red\", shape = 2) +\n    theme_map() +\n    labs(title = \"Walmart's Monthly Growth up to July 1981\", \n         caption = \"July 1981 highlighted in red\")\n\n\n\n\n\n\nHowever, more realistically, this is likely an error in the data. As seen in the plot below, it is such a huge outlier (more than double the next highest month) that a simple error seems to be the most likely explanation.\n\n\nmon_counts <- walmart %>%\n    count(rdate) \n\nmon_counts %>%\n    ggplot(aes(x = rdate, y = n)) + \n    geom_col() +\n    scale_y_continuous(\"No. of Locations\") +\n    scale_x_date(\"\", breaks = seq(as.Date(\"1965-01-01\"), as.Date(\"2005-01-01\"), by = \"5 years\"), labels = scales::date_format(\"%Y\")) +\n    ggrepel::geom_label_repel(\n        data = filter(mon_counts, rdate == as.Date(\"1981-07-01\")),\n        aes(label = format(rdate, \"%b %Y\"))\n    ) +\n    ggtitle(\"Walmart Locations Opened per Month\")\n\n\n\n\n\n\nFor further reference, find this post’s Github repository.\n\n\n\n",
+    "preview": "posts/2018-06-21-mapping-walmarts-growth/img/featured.png",
+    "last_modified": "2020-12-21T18:59:27-05:00",
+    "input_file": {},
+    "preview_width": 685,
+    "preview_height": 422
+  },
+  {
+    "path": "posts/2018-06-07-text-mining-tf-idf-sentiment-analysis/",
+    "title": "Text Mining: TF-IDF & Sentiment Analysis",
+    "description": "Tidy text analysis of India PM’s radio addresses in a shiny app",
+    "author": [],
+    "date": "2018-06-07",
+    "categories": [
+      "tidytext",
+      "shiny",
+      "ggplot2",
+      "rvest",
+      "NLP"
+    ],
+    "contents": "\nEvery month the Indian Prime Minister Narendra Modi gives a radio address to listeners. I collected those speeches with rvest and created a shiny app to allow users to explore different aspects of the corpus, such as word frequencies, sentiment, and TF-IDF. Find the app at the link below:\nhttps://seanangio.shinyapps.io/mann_ki_baat/\n\n\n\nYou can also find its Github repo.\nRelated to this project, I also wrote a short post introducing the tidytext package found on the Social Cops blog.\n\n\n\n",
+    "preview": "posts/2018-06-07-text-mining-tf-idf-sentiment-analysis/img/featured.png",
+    "last_modified": "2020-12-21T18:58:19-05:00",
+    "input_file": {},
+    "preview_width": 362,
+    "preview_height": 364
+  },
+  {
+    "path": "posts/2018-05-31-animating-dosas/",
+    "title": "Animating Dosas",
+    "description": "Scraping Saravana Bhavan’s web site to map restaurant locations in time and space",
+    "author": [],
+    "date": "2018-05-31",
+    "categories": [
+      "gganimate",
+      "leaflet",
+      "tidyverse",
+      "rvest"
+    ],
+    "contents": "\n\nContents\nOverview\nWeb Scraping\nGeocoding locations\nPlot locations on a Leaflet map\nPlot locations over time with gganimate\nPlot growth over time\nConclusion\n\nOverview\nFrom humble origins in Chennai, Saravana Bhavan has grown into a global chain of close to 100 high-quality, vegetarian South Indian restaurants. If you eat at their Delhi location, you’ll find a paper placemat in front of you listing all of their locations around the world. I took the opportunity to scrape their company website for the addresses of these locations and map them.\nThis blog explains how I made a few different visualizations of the chain’s growth, but here is my favorite.\n\n\n\nYou can find the code behind the images in this blog’s Github repo.\nI hope this map, along with a few others I’ve made below, are more informative than the map currently available on Saravana’s website.\n\n\n\n\nN.B. This post was written using the old gganimate API\n\nWeb Scraping\nRather than load all packages at once, I will load them as needed for easier demonstration. I used rvest for web scraping and the tidyverse for data wrangling.\n\n\nlibrary(tidyverse)\nlibrary(rvest)\nlibrary(countrycode)\nlibrary(ggmap)\n\n\n\nScrape country pages\nThe first step was to scrape the data from the Saravana Bhavan website. To find the restaurant information, you need to enable Adobe Flash Player to see the map; then choose a country; then a city; and then pick a location. The complete urls contain a country (“cn”), a city (“cy”), and a restaurant id (“rid”). All of these will need to be scraped. An example of this pattern is “http://saravanabhavan.com/restaurants.php?cn=U.A.E&cy=Abu%20Dhabi&rid=73”.\nIn order to do this, I first manually compiled a list of countries, noting their exact spelling and spacing. I then wrote a function to scrape the names of all cities for each country into a dataframe. I also mutated a few columns that will be necessary:\nthe names of cities with spaces replaced by “%20” for functioning urls\nthe urls needed in the next step to scrape city pages\nand a clean version of country names for later plotting\nNext, I loaded in some data from the countrycode package in order to pair each country with its continent. Later we can map this variable to color for some differentiation in our map.\n\n\n# start with vector of countries exactly matching website\ncountries <- c(\"Canada\", \"U.S.A\", \"SouthAfrica\", \"Sweden\", \"Netherland\", \n               \"U.K\", \"Germany\", \"France\", \"SaudiArabia\", \"Bahrain\", \"Qatar\",\n               \"U.A.E\", \"Kuwait\", \"Oman\", \"India\", \"Thailand\", \"HongKong\",\n               \"Malaysia\", \"Singapore\", \"Australia\")\n\n# function to scrape country web pages for city names\nscrape_country <- function(country) {\n    \n    url <- str_c(\"http://www.saravanabhavan.com/restaurants.php?cn=\", country)\n    city <- read_html(url) %>% \n        html_nodes(\".arial-11-gray-bold-black\") %>% \n        html_text() %>%\n        .[!str_detect(., pattern = \"Guest\")]\n\n    tibble(country = country, city = city)\n}\n\n# loop over country web pages to get df of countries and cities, plus complete urls\nhsb <- countries %>%\n    map_dfr(scrape_country) %>%\n    mutate(\n        city_str = str_replace(city, \" \", \"%20\"),\n        city_url = str_c(\"http://www.saravanabhavan.com/restaurants.php?cn=\", \n                         country, \"&cy=\", city_str),\n        clean_country = case_when(\n            country == \"U.S.A\" ~ \"United States\",\n            country == \"U.K\" ~ \"United Kingdom\",\n            country == \"SaudiArabia\" ~ \"Saudi Arabia\",\n            country == \"HongKong\" ~ \"Hong Kong SAR China\",\n            country == \"Netherland\" ~ \"Netherlands\",\n            country == \"U.A.E\" ~ \"United Arab Emirates\",\n            country == \"SouthAfrica\" ~ \"South Africa\",\n            TRUE ~ country\n        )\n    )\n\n# get country-continent pair data from countrycode package for joining\ndata(\"codelist\")\ncontinents <- codelist %>%\n    select(country.name.en, continent)\n\n# fix country names and join with continents\nhsb1 <- hsb %>%\n    left_join(continents, by = c(\"clean_country\" = \"country.name.en\"))\n\n# output file after scraping\nsaveRDS(hsb1, file = \"hsb1.rds\")\n\n\n\nWe can see the results thus far here.\n\n\n\nScrape city pages\nAfter scraping the country pages for city names, we can scrape the city pages for their locations. We can write a very similar function but now target both the name of the location and its corresponding restaurant id (“rid”).\n\n\n# function to get locations and restaurant id from city page\nget_location_rid <- function(city_url) {\n    \n    content <- read_html(city_url)\n    \n    location <- content %>%\n        html_nodes(\"#branchDiv\") %>% \n        html_text(trim = TRUE) %>%\n        str_split(\"\\n\") %>%\n        unlist() %>% \n        str_trim()\n    \n    rid <- content %>%    \n        html_nodes(\".arial-11-gray-bold-black\") %>%\n        html_attr(\"onclick\") %>%\n        str_subset(\"rid=\") %>%\n        word(start = -1, sep = \"=\") %>%\n        word(start = 1, sep = \"'\")\n    \n    tibble(location, rid)\n}\n\n# add locations and rid to each city; mutate complete url for a location\nhsb2 <- hsb1 %>%\n    mutate(location_rid = purrr::map(.$city_url, get_location_rid)) %>%\n    unnest() %>%\n    mutate(rid_url = str_c(city_url, \"&rid=\", rid))\n\n# output another file to avoid scraping again\nsaveRDS(hsb2, file = \"hsb2.rds\")\n\n\n\nAt this point we can look to see which cities and countries have the most locations. Chennai, where the chain started, is of course the clear leader but cities like London, Singapore and Dubai all have a very high number of locations.\n\n\n\nScrape location pages for addresses and launch dates\nI repeated essentially the same process once more, now focused on extracting addresses and launch dates. For addresses, we have to do a bit of cleanup because we extracted more information than we need, such as phone numbers in most cases. These are not always formatted the same way for each page, but luckily address is always listed first. I have also made a few manual adjustments to addresses that are too brief to find a geolocation match. I also took the step of creating a variable for popup text to be displayed on the leaflet map.\n\n\n# function to get address information from location page\nget_address <- function(rid_url) {\n    read_html(rid_url) %>%\n        html_nodes(\".arial-10-gray-bold .arial-10-gray-bold\") %>% \n        html_text(trim = TRUE)\n}\n\n# add addresses for each location to dataframe\nhsb <- hsb %>%\n    mutate(address = purrr::map(.$rid_url, get_address)) %>%\n    unnest() %>%\n    filter(!address == \"View Location Map\")\n\n# remove an erroneous duplicate row\nhsb <- hsb[-c(36),]\n\n# clean addresses by splitting on phone number in most cases\nhsb <- hsb %>%\n    separate(address, into = c(\"address\", \"extra\"),\n             sep = \"Ph:|Ph :|Ph-|Ph -|PH -|Phone:|Tel:|Tel :|Tel  :|Tel /|Phone :|hsb.{1,}@saravanabhavan.com\", remove = FALSE) %>% \n    mutate(address = str_remove(address, \"\\\\.$\"))\n\n# make a few manual adjustments for failing addresses\nhsb$address[hsb$location == \"Vivo City\"] <- str_c(\n    hsb$address[hsb$location == \"Vivo City\"], \", Vivo City, Singapore\")\nhsb$address[hsb$location == \"Bur Dubai\"] <- str_c(\n    hsb$address[hsb$location == \"Bur Dubai\"], \", Bur Dubai, Dubai\")\n\n# concatenate location and address in html for leaflet popups\nhsb <- hsb %>%\n    mutate(\n        popup = str_c(\n            \"<b style='color: blue'>\", location, \"<\/b><br/>\",\n            address\n        )\n    )\n\n\n\nWe can follow the same process for dates. Only two locations are missing launch dates so that will not be a problem, and one of those restaurants missing a launch date looks to be closed anyway.\n\n\n# function to get launch date information from location page\nget_date <- function(rid_url) {\n    \n    launch_date <- read_html(rid_url) %>%\n        html_nodes(\".Arial-11-graybold\") %>% \n        html_text(trim = TRUE) %>%\n        str_split(\": \") %>%\n        unlist %>%\n        .[2]\n    \n    launch_date <- ifelse(is.null(launch_date), NA, launch_date)\n    return(launch_date)\n}\n\n# add addresses for each location to dataframe\nhsb <- hsb %>%\n    mutate(date = purrr::map_chr(.$rid_url, get_date),\n           date = as.Date(date, format = \"%d-%m-%Y\")) \n\n\n\nGeocoding locations\nI used the ggmap package to find longitude and latitude coordinates for each location. Despite being well under a 2,500 query daily limit, I would receive many query limit errors in trying to extract this information, even when adding Sys.sleep() in between calls.\nI was able to overcome this problem using a simplified version of a geocoding function from Shane Lynn. Three locations failed for reasons other than the query limit, and so I just looked them up manually. Be sure to output the object after geocoding completes so to avoid having to do it more than once.\n\n\n# define function for getting coordinates of an address\nget_geo <- function(address) {\n    \n    geo_reply <- geocode(address, output = 'all', \n                         messaging = TRUE, override_limit = TRUE)\n    \n    answer <- tibble(address = address, lat = NA, lon = NA, status = NA)\n    answer$status <- geo_reply$status\n    \n    while (geo_reply$status == \"OVER_QUERY_LIMIT\") {\n        print(\"OVER QUERY LIMIT - Pausing for 1 minute at:\") \n        time <- Sys.time()\n        print(as.character(time))\n        Sys.sleep(60)\n        geo_reply <- geocode(address, output = 'all', messaging = TRUE, override_limit = TRUE)\n        answer$status <- geo_reply$status\n    }\n    \n    if (geo_reply$status != \"OK\") {\n        return(answer)\n    }  else {\n        answer$lat <- geo_reply$results[[1]]$geometry$location$lat\n        answer$lon <- geo_reply$results[[1]]$geometry$location$lng\n        return(answer)\n    }\n    \n}\n\n# get coordinates for each location's address in a new df after removing known failures\naddress_crs <- hsb %>%\n    filter(!location %in% c(\"Southall\", \"Tooting\", \"Al Khuwair\")) %>%\n    .$address %>%\n    map_dfr(get_geo)\n\n# save to rds to avoid re-running geocode\nsaveRDS(address_crs, file = \"address_crs.RDS\")\n\n\n\nLastly, we just need to join the coordinate data back into our main dataset.\n\n\naddress_crs <- readRDS(\"address_crs.RDS\")\n\n# join coordinate data back into main df with 3 manual additions\nfinal_hsb <- hsb %>%\n    left_join(address_crs, by = \"address\") %>%\n    mutate(\n        lat = case_when(\n            location == \"Southall\" ~ 51.5074321,\n            location == \"Tooting\" ~ 51.4299496,\n            location == \"Al Khuwair\" ~ 23.5968027,\n            TRUE ~ lat\n        ),\n        lon = case_when(\n            location == \"Southall\" ~ -0.3800047,\n            location == \"Tooting\" ~ -0.1683871,\n            location == \"Al Khuwair\" ~ 58.4314325,\n            TRUE ~ lon\n        )\n    )\n\n# save final df\nsaveRDS(final_hsb, \"final_hsb.RDS\")\n\n\n\nPlot locations on a Leaflet map\nOnce we have our final dataset we can plot the coordinates on a map. Leaflet is one tool we can use to do this easily. The map below has its pros and cons. It is very easy to interact with as we can zoom in to each cluster and get a better sense of the regional distribution. If we zoom in far enough, we can see exactly where each restaurant is. However, we are probably less interested in each restaurant’s exact location. We could just use Google Maps if we were planning a visit. Instead a better choice might be animating a map that would allow for less interaction but would be able to show the growth of the franchise over time.\n\n\n\nPlot locations over time with gganimate\nWe will be able to tell a better story about the growth of the franchise if we utilize of the launch date variable. Moreover, instead of using exact locations, we can aggregate all locations in one city as a single entity. While we could repeat our geocoding process for city names, it makes more sense to use the coordinates of one of the locations previously found as the coordinates for all locations in that given city. On a world map, we will not be able to notice any intra-city differences anyway.\nLaunch dates were missing for only two restaurants, one of which appears now to be closed, so there is no problem there for our purposes.\n\n\ncity_coordinates <- final_hsb %>%\n    select(city, lat, lon) %>%\n    group_by(city) %>%\n    top_n(1)\n    \n# join coordinate data into df with dates of each location; mutate city totals, labels\nhsb_dates <- final_hsb %>%\n    filter(!is.na(date)) %>%\n    select(city, clean_country, continent, date) %>%\n    mutate(city_country = str_c(city, \", \", clean_country)) %>%\n    left_join(city_coordinates, by = \"city\") %>%\n    group_by(city_country, date, lat, lon, continent) %>%\n    count() %>%\n    arrange(date) %>%\n    group_by(city_country, continent) %>%\n    mutate(city_total = cumsum(n)) %>%\n    ungroup() %>%\n    mutate(\n        hsb_total = cumsum(n),\n        label = str_c(city_country, \" (\", city_total, \")\")\n    )\n\n\n\nAfter the following transformations we can view the growth of the franchise in a table format. The first two decades of existence for the brand is almost exclusively in Chennai and South India.\n\n\n\nBefore animating, we can plot the final map with all locations.\n\n\nlibrary(maps)\nlibrary(ggthemes)\n\nworld <- ggplot() +\n    borders(\"world\", colour = \"gray85\", fill = \"gray80\") +\n    theme_map()\n\nworld +\n    geom_point(data = hsb_dates, \n               mapping = aes(x = lon, y = lat, size = city_total, color = continent), \n               alpha = 0.5) +\n    scale_color_discrete(guide = FALSE) +\n    labs(size = \"No. Restaurants\", \n         title = \"Saravana Bhavan Restaurants Around the World\") +\n    theme(plot.title = element_text(size = 12))\n\n\n\nThe map above however fails to show the growth of the chain over time. That is something we can achieve with a simple animation. With a little guidance from a blog post by Daniela Vázquez, it was fairly easy to make an animated map.\n\n\nlibrary(animation)\nlibrary(gganimate)\n\n# add empty rows for 0 count at beginning and pause at finish\nhsb_dates <- hsb_dates %>%\n    add_row(date = as.Date(\"1981-01-01\"), hsb_total = 0) %>%\n    add_row(date = as.Date(\"2018-05-01\"), hsb_total = 94) %>%\n    arrange(date)\n\nhsb_map <- world +\n    geom_point(data = hsb_dates, mapping = aes(x = lon, y = lat, \n                      size = city_total, color = continent,\n                      frame = date, cumulative = TRUE), \n               alpha = 0.5) +\n    theme(legend.position = \"none\") +\n    labs(size = \"No. Restaurants\", \n         title = \"Growth of Saravana Bhavan Restaurants:\") +\n    ggrepel::geom_label_repel(\n        data = hsb_dates,\n        mapping = aes(x = lon, y = lat, label = label,\n                      frame = date, cumulative = FALSE)\n        ) +\n    geom_label(data = hsb_dates,\n               mapping = aes(label = str_c(\"World Total: \", hsb_total), frame = date,\n                             x = -Inf, y = -88),\n               size = 4, fontface = \"bold\", hjust = 0, vjust = 1, nudge_y = 10) +\n    theme(plot.title = element_text(size = 16))\n\nani.options(ani.width = 640, ani.height = 480, interval = 0.8)\ngganimate(hsb_map, filename = \"hsb_map.gif\")\n\n\n\n\n\n\nPlot growth over time\nThe animated map is excellent at showing the geographical distribution of the chain’s growth. If instead we were more interested in the timeline of the growth, we could better represent the pace of the growth in a lineplot (shown below).\n\n\ndate_seq <- seq(from = as.Date(\"1980/1/1\"), to = as.Date(\"2020/1/1\"), by = \"5 years\")\n\nggplot(hsb_dates, aes(x = date, y = hsb_total)) +\n    geom_point(size = 0.5) +\n    geom_line() +\n    scale_x_date(NULL, breaks = date_seq, date_labels = \"%Y\") +\n    labs(title = \"Establishment of Saravana Bhavan Restaurants\",\n         y = \"No. of Locations\") +\n    theme(plot.title = element_text(size = 12))\n\n\n\nWe could then animate the line, adding the location name for each point.\n\n\nhsb_time <- ggplot(hsb_dates, aes(x = date, y = hsb_total, frame = date)) +\n    geom_point(size = 0.5) +\n    geom_line(aes(cumulative = TRUE)) +\n    ggrepel::geom_label_repel(aes(label = label), \n                              nudge_x = -5, nudge_y = 1, direction = \"both\") +\n    scale_x_date(NULL, breaks = date_seq, date_labels = \"%Y\") +\n    labs(title = \"Establishment of Saravana Bhavan Restaurants:\",\n         y = \"No. of Locations\") +\n    theme(plot.title = element_text(size = 12))\n\nani.options(ani.width = 640, ani.height = 480, interval = 0.8)\ngganimate(hsb_time, filename = \"hsb_time.gif\")\n\n\n\n\n\n\nConclusion\nI hope these examples helped demonstrate the power of packages like rvest for webscraping, leaflet for html maps, and gganimate for animated plots. One possible improvement would be using tweenr to interpolate data between dates in order to smoothen out the transitions from point to point. The most interesting thing I noted about the chain’s growth is the absolute paucity of branches in India, outside of Chennai. Eight locations in London but not a single one in Mumbai, Bangalore, Kolkata, Pune, Ahmedabad, etc? That seems quite odd.\n\n\n\n",
+    "preview": "posts/2018-05-31-animating-dosas/img/featured.png",
+    "last_modified": "2020-12-21T21:23:57-05:00",
+    "input_file": {},
+    "preview_width": 803,
+    "preview_height": 357
+  },
+  {
+    "path": "posts/2018-05-18-exploring-campaign-contribution-data/",
+    "title": "Exploring Campaign Contribution Data",
+    "description": "Investigation and visualization of 2016 Presidential election campaign contributions in PA",
+    "author": [],
+    "date": "2018-05-18",
+    "categories": [
+      "tidyverse",
+      "ggiraph"
+    ],
+    "contents": "\nFollowing completion of Udacity’s Data Analysis with R course, I conducted an exploratory data analysis of 2016 Presidential campaign contribution data from the state of Pennsylvania. Find it at the link below:\nhttps://rpubs.com/seanangio/PA2016\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2018-05-18-exploring-campaign-contribution-data/img/featured.png",
+    "last_modified": "2020-12-21T21:26:50-05:00",
+    "input_file": {},
+    "preview_width": 530,
+    "preview_height": 314
+  },
+  {
+    "path": "posts/2018-03-01-next-word-prediction/",
+    "title": "Next Word Prediction",
+    "description": "Next word prediction app in support of JHU Data Science Capstone on Coursera",
+    "author": [],
+    "date": "2018-03-01",
+    "categories": [
+      "shiny",
+      "tidyverse",
+      "data.table",
+      "NLP"
+    ],
+    "contents": "\nThe capstone project for the Data Science Specialization on Coursera from Johns Hopkins University is cleaning a large corpus of text and producing an app that generates word predictions based on user input. Find my attempt at the link below:\nhttps://seanangio.shinyapps.io/next_word_app/\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2018-03-01-next-word-prediction/img/featured.png",
+    "last_modified": "2020-12-21T21:28:11-05:00",
+    "input_file": {},
+    "preview_width": 736,
+    "preview_height": 397
+  },
+  {
+    "path": "posts/2017-12-17-supervised-learning-exercise-classification/",
+    "title": "Supervised Learning: Exercise Classification",
+    "description": "Exploring the effectiveness of different ML models to classify motion data into exercise categories",
+    "author": [],
+    "date": "2017-12-17",
+    "categories": [
+      "caret",
+      "ML"
+    ],
+    "contents": "\nThe final project for the Practical Machine Learning course of the Data Science Specialization on Coursera from Johns Hopkins University is to use supervised learning techniques to classify repetitions of physical exercises based on the manner in which the motion was completed using accelerometer, gyroscope and magnetometer data.\nFind my attempt at the link below:\nhttps://rpubs.com/seanangio/exercises_classification\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2017-12-17-supervised-learning-exercise-classification/img/featured.png",
+    "last_modified": "2020-12-21T21:31:20-05:00",
+    "input_file": {},
+    "preview_width": 679,
+    "preview_height": 472
+  },
+  {
+    "path": "posts/2017-11-23-comparing-fuel-efficiency-via-linear-regression/",
+    "title": "Comparing Fuel Efficiency via Linear Regression",
+    "description": "Using linear regression models to quantify the difference in fuel efficiency among automatic and manual transmission cars",
+    "author": [],
+    "date": "2017-11-23",
+    "categories": [
+      "regression",
+      "mtcars"
+    ],
+    "contents": "\nThe final project for the Linear Regression course of the Data Science Specialization on Coursera from Johns Hopkins University is to assess whether cars with a manual transmission have better fuel efficiency than those with an automatic transmission using only linear regression techniques. The report below attempts to quantify this difference using a variety of linear models.\nhttps://rpubs.com/seanangio/mtcars\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2017-11-23-comparing-fuel-efficiency-via-linear-regression/img/featured.png",
+    "last_modified": "2020-12-21T21:32:05-05:00",
+    "input_file": {},
+    "preview_width": 657,
+    "preview_height": 465
+  },
+  {
+    "path": "posts/2017-01-03-predicting-titanic-survival/",
+    "title": "Predicting Titanic Survival",
+    "description": "My attempt at the classic Kaggle competition to predict survival on the Titanic",
+    "author": [],
+    "date": "2017-01-03",
+    "categories": [
+      "caret",
+      "ML"
+    ],
+    "contents": "\nUse the link below to find my report using machine learning workflow to predict survival on the Titanic based on features like age, gender, and passenger class.\nhttps://www.kaggle.com/seanangio/predicting-titanic-survival\n\n\n\nYou can also find its Github repo.\n\n\n\n",
+    "preview": "posts/2017-01-03-predicting-titanic-survival/img/featured.png",
+    "last_modified": "2020-12-21T21:33:34-05:00",
+    "input_file": {},
+    "preview_width": 697,
+    "preview_height": 498
+  }
+]
