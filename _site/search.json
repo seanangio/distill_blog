@@ -6,14 +6,14 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2020-12-23T08:48:02-05:00"
+      "last_modified": "2020-12-23T09:11:58-05:00"
     },
     {
       "path": "index.html",
       "title": "Posts",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2020-12-23T08:48:03-05:00"
+      "last_modified": "2020-12-23T09:11:59-05:00"
     }
   ],
   "collections": ["posts/posts.json"]

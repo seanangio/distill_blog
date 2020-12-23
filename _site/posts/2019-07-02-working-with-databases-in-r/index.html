@@ -1,0 +1,3076 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+<title>Sean Angiolillo: Working with Databases in R</title>
+
+<meta property="description" itemprop="description" content="Use R to structure and query database tables of Indian census data"/>
+
+<link rel="canonical" href="https://sean.rbind.io/posts/2019-07-02-working-with-databases-in-r/"/>
+<link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
+<link rel="icon" type="image/png" href="../../static/identicon.png"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2019-07-02"/>
+<meta property="article:created" itemprop="dateCreated" content="2019-07-02"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Sean Angiolillo: Working with Databases in R"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Use R to structure and query database tables of Indian census data"/>
+<meta property="og:url" content="https://sean.rbind.io/posts/2019-07-02-working-with-databases-in-r/"/>
+<meta property="og:image" content="https://sean.rbind.io/posts/2019-07-02-working-with-databases-in-r/img/featured.png"/>
+<meta property="og:image:width" content="1950"/>
+<meta property="og:image:height" content="1199"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Sean Angiolillo"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Sean Angiolillo: Working with Databases in R"/>
+<meta property="twitter:description" content="Use R to structure and query database tables of Indian census data"/>
+<meta property="twitter:url" content="https://sean.rbind.io/posts/2019-07-02-working-with-databases-in-r/"/>
+<meta property="twitter:image" content="https://sean.rbind.io/posts/2019-07-02-working-with-databases-in-r/img/featured.png"/>
+<meta property="twitter:image:width" content="1950"/>
+<meta property="twitter:image:height" content="1199"/>
+<meta property="twitter:site" content="@seanangiolillo"/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","date","categories","output","draft","preview","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY-NC"]},{"type":"character","attributes":{},"value":["Working with Databases in R"]},{"type":"character","attributes":{},"value":["Use R to structure and query database tables of Indian census data"]},{"type":"character","attributes":{},"value":["07-02-2019"]},{"type":"character","attributes":{},"value":["SQL","dbplyr","sf","PostGIS","rpostgis"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["img/featured.png"]},{"type":"character","attributes":{},"value":["https://sean.rbind.io/posts/2019-07-02-working-with-databases-in-r/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/country_census.csv","data/district_census.csv","data/district_shapes.dbf","data/district_shapes.prj","data/district_shapes.shp","data/district_shapes.shx","data/electricity_latrine_dots.dbf","data/electricity_latrine_dots.prj","data/electricity_latrine_dots.shp","data/electricity_latrine_dots.shx","data/state_census.csv","data/state_shapes.dbf","data/state_shapes.prj","data/state_shapes.shp","data/state_shapes.shx","data/states_abb_region_ut.csv","img/above_below_map.png","img/featured.png","working-with-databases-in-r_files/anchor-4.2.2/anchor.min.js","working-with-databases-in-r_files/bowser-1.9.3/bowser.min.js","working-with-databases-in-r_files/distill-2.2.21/template.v2.js","working-with-databases-in-r_files/figure-html5/unnamed-chunk-32-1.png","working-with-databases-in-r_files/jquery-1.11.3/jquery.min.js","working-with-databases-in-r_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+            .filter(function(item) { return !!item.description; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description}
+                </div>
+                <div class="search-item-preview">
+                  <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+@import url('https://fonts.googleapis.com/css2?family=Raleway');
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    "Lato", sans-serif;
+  --mono-font:       monospace;
+  --body-font:       "Roboto", sans-serif;
+  --navbar-font:     "Raleway", sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   15px; /*13px;*/
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       22px; /*18px;*/
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        20px; /*15px;*/
+  --hover-color:      white;
+  --bkgd-color:       #1277A7; /*#0F2E3D;*/
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        18px; /*15px;*/
+  --hover-color:      white;
+  --bkgd-color:       #1277A7; /*#0F2E3D;*/
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+	font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+/* only text inside of <p> tags */
+d-article > p {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+	font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+	font-size: var(--aside-size, 12px);
+	color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+	font-size: var(--fig-cap-size, 13px);
+	color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+	font-size: var(--heading-size, 0.6rem);
+	color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+	font-size: var(--body-size, 0.8rem);
+	color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+	color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+	font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+	font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+	color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+	color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+	color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+	font-size: var(--title-size, 18px);
+	font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a:hover {
+	color: var(--hover-color, white);
+}
+
+.distill-site-header {
+	font-size: var(--text-size, 15px);
+	color: var(--text-color, rgba(255, 255, 255, 0.8));
+	background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+	font-size: var(--text-size, 15px);
+	color: var(--text-color, rgba(255, 255, 255, 0.8));
+	background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+	color: var(--hover-color, white);
+}</style>
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120637374-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-120637374-1');
+</script>
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Working with Databases in R","description":"Use R to structure and query database tables of Indian census data","authors":[],"publishedDate":"2019-07-02T00:00:00.000+00:00"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<span class="logo">
+<img src="../../static/identicon.png"/>
+</span>
+<a href="../../index.html" class="title">Sean Angiolillo</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="https://github.com/seanangio">
+<i class="fa fa-github" aria-hidden="true"></i>
+</a>
+<a href="https://twitter.com/seanangiolillo">
+<i class="fa fa-twitter" aria-hidden="true"></i>
+</a>
+<a href="https://www.linkedin.com/in/sean-angiolillo/">
+<i class="fa fa-linkedin" aria-hidden="true"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Working with Databases in R</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:SQL" class="dt-tag">SQL</a>
+  <a href="../../index.html#category:dbplyr" class="dt-tag">dbplyr</a>
+  <a href="../../index.html#category:sf" class="dt-tag">sf</a>
+  <a href="../../index.html#category:PostGIS" class="dt-tag">PostGIS</a>
+  <a href="../../index.html#category:rpostgis" class="dt-tag">rpostgis</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Use R to structure and query database tables of Indian census data</p></p>
+</div>
+
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#create-a-database">Create a database</a></li>
+<li><a href="#writing-data-from-r-to-a-postgresql-database">Writing data from R to a PostgreSQL database</a></li>
+<li><a href="#writing-spatial-data-to-a-postgis-enabled-postgresql-database">Writing spatial data to a PostGIS-enabled PostgreSQL database</a></li>
+<li><a href="#querying-sql-databases-from-r">Querying SQL databases from R</a></li>
+<li><a href="#final-word-and-further-resources">Final Word and Further Resources</a></li>
+</ul>
+</nav>
+</div>
+<p>My recent blog posts have focused extensively on wrangling and visualizing data with R packages such as the {tidyverse}, {sf}, and {shiny}.</p>
+<p>However, as the size of data grows beyond what can be stored in one’s local memory, along with a variety of other possible reasons, a relational database becomes more of a necessity. With this in mind, I have been exploring PostgreSQL, including how to access SQL databases without leaving the familiar confines of RStudio.</p>
+<p><a href="https://github.com/seanangio/in_household">Previously</a>, I wrangled together three decades of district-level Indian electricity and latrine access data. I used this dataset to:</p>
+<ul>
+<li>highlight the wide district-level distribution behind any country-level statistic with a choropleth and histogram;</li>
+<li>compare mapping styles such as bubble maps, dot density maps, and 3D choropleths;</li>
+<li>create other visualizations that reveal the co-varying relationship between electricity and latrine access, such as a scatterplot and a bivariate choropleth.</li>
+</ul>
+<p>In this post, I’ll demonstrate how I packaged this data into a PostGIS-enabled PostgreSQL database and how it can be queried from R. Specifically, this post covers:</p>
+<ul>
+<li>Connecting to a SQL database from R</li>
+<li>Writing data, including spatial data, to a remote database from R</li>
+<li>Querying SQL databases from RStudio using SQL or {dplyr} syntax</li>
+</ul>
+<p>In order to review how I created the R dataframes that I will write to the PostgreSQL database, please first examine this script <a href="https://github.com/seanangio/in_household/blob/master/prep_sql.R">here</a>.</p>
+<p>My previous dataframes were manipulated in such as way as to be prepared for their respective {shiny} applications. Thinking however of the most logical table structure for a database, I applied the following two steps. I divided country, state and district level data into separate tables. Moreover, I separated census data from spatial data.</p>
+<p>Accordingly, I devised a database with three spatial tables (district and state shapes, plus another for the dot density map), three tables of census data (district, state and country-level), and one additional table of some useful state-identifying information such as state abbreviations, region, and union territory status. From these tables, I can use any combination of joins to create the data for any of the previous {shiny} apps.</p>
+<h2 id="create-a-database">Create a database</h2>
+<p>This <a href="https://tbradley1013.github.io/2017/08/26/sql-management-in-r/">blog</a> among other resources suggest it is possible to create a new SQLite database directly from R. However, that does not appear to be as simple with PostgreSQL. As a rarer task, I’ll just create a locally-hosted database from pgAdmin, the GUI for PostgreSQL with a simple one line command.</p>
+<pre><code>CREATE DATABASE in_household;</code></pre>
+<h3 id="create-a-database-connection">Create a database connection</h3>
+<p>With the database initialized, I can start creating tables after establishing a connection. One can do this in R with the help of the {DBI} package.</p>
+<p>The {DBI} package serves as a generic database interface for R. Packages like {RPostgres}, {RSQLite} or {RMySQL} then are implementations to forge connections between R and a particular database through the DBI interface.</p>
+<p>For connecting to PostgreSQL from R, there are two possible implementation packages: {RPostgreSQL} and {RPostgres}. {Rpostgres} is newer and under more active development. According to this <a href="http://blog.yitang.uk/2016/04/14/compare-rpostgres-and-rpostgresql-package/">blog</a>, it is also faster. However, when creating a connection via {RPostgres}, I had some trouble working with spatial data. This may be because I seem to be missing the correct driver. Nevertheless, there is also an {rpostgis} package with some handy functions that depends on the older {RPostgreSQL}. As speed won’t be a concern for me here, I’ll use the older {RPostgreSQL} implementation.</p>
+<p>In the <code>dbConnect()</code> function from the {DBI} package, I specify PostgreSQL as the driver and give the database name. In many cases, here is where the user name and passwords would also be supplied.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-dbi.github.io/DBI'>DBI</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tomoakin/RPostgreSQL'>RPostgreSQL</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mablab.org/rpostgis/index.html'>rpostgis</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dbplyr.tidyverse.org/'>dbplyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-spatial/sf/'>sf</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+
+<span class='va'>con</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span>drv <span class='op'>=</span> <span class='st'>"PostgreSQL"</span>, host <span class='op'>=</span> <span class='st'>"localhost"</span>, 
+                  dbname <span class='op'>=</span> <span class='st'>"in_household"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;PostgreSQLConnection&quot;
+attr(,&quot;package&quot;)
+[1] &quot;RPostgreSQL&quot;</code></pre>
+</div>
+<h2 id="writing-data-from-r-to-a-postgresql-database">Writing data from R to a PostgreSQL database</h2>
+<p>Having connected to a database, I can now start writing data to it. I’ll start with the non-spatial data, demonstrating three methods.</p>
+<ul>
+<li>The first writes a csv file through SQL code written in an R Markdown chunk, where SQL has been specified as the language engine.</li>
+<li>The second directly writes an R dataframe through the <code>DBI::dbWriteTable()</code> function.</li>
+<li>The third is a similar approach, but uses {dplyr}’s <code>copy_to()</code>.</li>
+</ul>
+<h3 id="sqls-create-table-and-copy-statements">SQL’s CREATE TABLE and COPY statements</h3>
+<p>In an R Markdown document, I can change the language engine from the default of R to another language, such as SQL. I then just need to specify the existing connection made through the {DBI} package. The result below is the same as if entering the query directly in pgAdmin.</p>
+<p>I do this in two stages. First I need a <code>CREATE TABLE</code> statement to initiate the table fields and associated constraints.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> states_abb_region_ut (</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    state <span class="dt">varchar</span>(<span class="dv">90</span>),                  <span class="co">-- state name,</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    abb <span class="dt">char</span>(<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,               <span class="co">-- state abbreviation</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    region <span class="dt">varchar</span>(<span class="dv">90</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,        <span class="co">-- state region</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="dt">year</span> <span class="dt">date</span> <span class="kw">CHECK</span> </span>
+<span id="cb3-6"><a href="#cb3-6"></a>        ((<span class="dt">year</span> <span class="kw">IN</span> (<span class="st">&#39;1991-01-01&#39;</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>        <span class="st">&#39;2001-01-01&#39;</span>,<span class="st">&#39;2011-01-01&#39;</span>))),    <span class="co">-- state year (states change over time)</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    ut_status <span class="dt">boolean</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,         <span class="co">-- is it a union territory?</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>        </span>
+<span id="cb3-10"><a href="#cb3-10"></a>    <span class="kw">CONSTRAINT</span> state_key <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (state, <span class="dt">year</span>)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>);</span></code></pre></div>
+</div>
+<p>Then I use a <code>COPY</code> statement to import the data with a path to a local csv file.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">COPY</span> states_abb_region_ut</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">FROM</span> <span class="st">&#39;/path/to/data/states_abb_region_ut.csv&#39;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">WITH</span> (FORMAT CSV, <span class="kw">HEADER</span>);</span></code></pre></div>
+</div>
+<h3 id="with-dbi">With {DBI}</h3>
+<p>Rather than first writing an R object to a csv file, I can skip this intermediary step and, as shown below, directly write an R dataframe into a table in a remote database using the <code>DBI::dbWriteTable()</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'># district_census is a dataframe in R</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbExistsTable.html'>dbExistsTable</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"district_census"</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbRemoveTable.html'>dbRemoveTable</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"district_census"</span><span class='op'>)</span>
+
+<span class='co'># Write the data frame to the database</span>
+<span class='fu'><a href='https://dbi.r-dbi.org/reference/dbWriteTable.html'>dbWriteTable</a></span><span class='op'>(</span><span class='va'>con</span>, name <span class='op'>=</span> <span class='st'>"district_census"</span>, value <span class='op'>=</span> <span class='va'>district_census</span>, 
+             row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>On exporting the data, SQL has made its best guess at the data type of each column. It recognized year as a date, and the count data as integers. It assigned non-numeric data as text and decimal numbers as real numbers.</p>
+<p>If I want to alter the table, such as changing data types or assigning constraints like primary keys or NOT NULL requirements, I can do that through the <code>dbExecute()</code> function. In this case, the primary key for the “district_census” table is the unique combination of seven variables.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbExecute.html'>dbExecute</a></span><span class='op'>(</span><span class='va'>con</span>,
+          <span class='st'>"ALTER TABLE district_census 
+                ADD CONSTRAINT district_census_key PRIMARY KEY 
+                    (district, state, year, societal_section, 
+                    demo_section, water_source, water_avail);"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>I can change data types with a command like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbExecute.html'>dbExecute</a></span><span class='op'>(</span><span class='va'>con</span>,
+          <span class='st'>"ALTER TABLE district_census
+                ALTER COLUMN geo_section TYPE char(8),
+                ALTER COLUMN state TYPE varchar(90),
+                ALTER COLUMN societal_section TYPE varchar(3),
+                ALTER COLUMN demo_section TYPE char(5),
+                ALTER COLUMN water_source TYPE varchar(90),
+                ALTER COLUMN water_avail TYPE varchar(90),
+                ALTER COLUMN district TYPE varchar(90);"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>I could also use the {purrr} package to add constraints for columns requiring the same restrictions.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>percentages</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ea"</span>,<span class='st'>"la"</span>,<span class='st'>"ea_la"</span>,<span class='st'>"ea_ln"</span>,<span class='st'>"en_la"</span>,<span class='st'>"en_ln"</span>,<span class='st'>"within"</span>,<span class='st'>"near"</span>,
+                 <span class='st'>"away"</span>,<span class='st'>"tap_treated"</span>,<span class='st'>"tap_untreated"</span>,<span class='st'>"covered_well"</span>,
+                 <span class='st'>"uncovered_well"</span>,<span class='st'>"hand_pump"</span>,<span class='st'>"tube_well"</span>,<span class='st'>"others"</span><span class='op'>)</span>
+
+<span class='fu'>walk</span><span class='op'>(</span><span class='va'>percentages</span>, <span class='op'>~</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbExecute.html'>dbExecute</a></span><span class='op'>(</span><span class='va'>con</span>,
+              <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"ALTER TABLE district_census ADD CONSTRAINT "</span>, <span class='va'>.x</span>, 
+                     <span class='st'>"_check CHECK ("</span>, <span class='va'>.x</span>, <span class='st'>" &gt;= 0 AND "</span>, <span class='va'>.x</span>, <span class='st'>" &lt;= 1 OR NULL);"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Let’s check if adding these constraints and key worked:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">SELECT</span> constraint_name, constraint_type</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">FROM</span> information_schema.table_constraints</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">WHERE</span> table_name <span class="op">=</span> <span class="st">&#39;district_census&#39;</span>;</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-9">Table 1: </span>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">constraint_name</th>
+<th style="text-align: left;">constraint_type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ea_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">la_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ea_la_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ea_ln_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">en_la_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">en_ln_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">within_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">near_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">away_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tap_treated_check</td>
+<td style="text-align: left;">CHECK</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>It shows that the primary key, checks on percentage columns, and not null columns have been successfully added to the table.</p>
+<h3 id="with-dplyr">With {dplyr}</h3>
+<p>Similar to {DBI}’s <code>dbWriteTable()</code>, I can also directly write R dataframes to a remote database with {dplyr}.</p>
+<p>{dplyr} is of course well-known as the {tidyverse}’s workhorse package for manipulation of data stored in local memory. However, with the help of {dbplyr}, it can also be used to manipulate data stored in remote databases.</p>
+<p>{dplyr}’s <code>copy_to()</code> function, as explained in the {dbplyr} <a href="https://dbplyr.tidyverse.org/articles/dbplyr.html">vignette</a>, is a quick and dirty way to write a dataframe to a remote database. The command below adds the “state_census” dataframe to the database.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dplyr.tidyverse.org/reference/copy_to.html'>copy_to</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='va'>state_census</span>, <span class='st'>"state_census"</span>, temporary <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>As with the <code>dbWriteTable()</code> method, I would need to subsequently alter any data types, keys and other constraints.</p>
+<p>Because I had already written the necessary SQL import statements, I’ll use the first method to import the remaining table (country_census). This code can be found in the “write_tables_sql” <a href="https://github.com/seanangio/in_household/tree/master/sql">folder</a>.</p>
+<h2 id="writing-spatial-data-to-a-postgis-enabled-postgresql-database">Writing spatial data to a PostGIS-enabled PostgreSQL database</h2>
+<p>With the census data in place, I will now write the spatial data from R to the database. Doing so requires first installing the PostGIS extension. PostGIS is a spatial database extender for PostgreSQL. If you are familiar with R’s {sf} package, PostGIS will feel familiar– down to functions beginning with “ST_”.</p>
+<p>One line of SQL code installs PostGIS.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">CREATE</span> EXTENSION postgis;</span></code></pre></div>
+</div>
+<p>I can confirm the installation has been succesful by checking the version number. (I’ll explain the <code>dbGetQuery()</code> function in a later section).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"SELECT postgis_full_version();"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>                                                                                                                                                                                                        postgis_full_version
+1 POSTGIS=&quot;2.5.2 r17328&quot; [EXTENSION] PGSQL=&quot;110&quot; GEOS=&quot;3.7.1-CAPI-1.11.1 27a5e771&quot; PROJ=&quot;Rel. 5.2.0, September 15th, 2018&quot; GDAL=&quot;GDAL 2.3.3, released 2018/12/14&quot; LIBXML=&quot;2.9.9&quot; LIBJSON=&quot;0.13.1&quot; LIBPROTOBUF=&quot;1.3.1&quot; RASTER</code></pre>
+</div>
+<p>I can also confirm this through a function from the {rpostgis} package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/pkg/rpostgis/man/pgPostGIS.html'>pgPostGIS</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<p>I’ll demonstrate two methods to write spatial data. The first writes an ESRI shapefile to a database through the command line. The second directly writes an {sf} object through the <code>st_write()</code> function.</p>
+<h3 id="writing-shapefiles-via-the-command-line">Writing shapefiles via the command line</h3>
+<p>The first method of writing spatial data to a database does not involve R or RStudio at all. Instead it uses the command line. By opening a terminal window and navigating to the correct directory, I can write a shapefile with the following command. Note that this only works with the shapefile format and not other formats of spatial data.</p>
+<pre><code>shp2pgsql -I -s 4326 -W Latin1 district_shapes.shp district_shapes | psql -d in_household -U postgres</code></pre>
+<p>shp2pgsql is a command line tool that comes with PostgreSQL for converting ESRI shapefiles into SQL suitable for insertion into a PostGIS-enabled PostgreSQL database.</p>
+<p>Breaking down this command, note that:</p>
+<ul>
+<li>-I adds a GiST index on the geometry column</li>
+<li>-s 4326 specifies an SRID (Spatial Reference Identifier)</li>
+<li>-W specifies the encoding</li>
+<li>district_shapes.shp is the file name</li>
+<li>district_shapes is the new table name</li>
+<li>-d in_household is the database name</li>
+<li>-U postgres is the default user</li>
+</ul>
+<h3 id="directly-writing-spatial-data-with-sfst_write">Directly writing spatial data with <code>sf::st_write()</code></h3>
+<p>As in the first method shown for writing non-spatial data, the workflow above includes an intermediary step, in this case, the creation of an ESRI shapefile from the existing {sf} object. This may be useful in some cases, but ESRI shapefiles have certain limitations. For instance, field names greater than ten characters will be automatically abbreviated.</p>
+<p>We should, however, be able to directly write an {sf} object to the database. I can do this with the <code>st_write()</code> function. Placing the <code>st_write()</code> function inside the <code>purrr::walk()</code> function provides for writing any number of spatial tables in a list or vector.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>remaining_spatial_tables</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"state_shapes"</span>, <span class='st'>"electricity_latrine_dots"</span><span class='op'>)</span>
+
+<span class='fu'>walk</span><span class='op'>(</span><span class='va'>remaining_spatial_tables</span>, <span class='op'>~</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_write.html'>st_write</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='va'>.x</span><span class='op'>)</span>, dsn <span class='op'>=</span> <span class='va'>con</span>, layer <span class='op'>=</span> <span class='va'>.x</span>, 
+             overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>, append <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>As shown below, I can confirm that the spatial data tables have been added with a function from the {rpostgis} package. I can also note that the file written as an ESRI shapefile has a geometry column named “geom”, whereas the objects written with <code>st_write()</code> hold their geometry in a column named “geometry”.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/pkg/rpostgis/man/pgListGeom.html'>pgListGeom</a></span><span class='op'>(</span><span class='va'>con</span>, geog <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  schema_name               table_name geom_column geometry_type
+1      public          district_shapes        geom  MULTIPOLYGON
+2      public electricity_latrine_dots    geometry      GEOMETRY
+3      public             state_shapes    geometry      GEOMETRY
+      type
+1 GEOMETRY
+2 GEOMETRY
+3 GEOMETRY</code></pre>
+</div>
+<h2 id="querying-sql-databases-from-r">Querying SQL databases from R</h2>
+<p>Now that I have imported the requisite tables, I can begin querying the database from R. It is useful to first explore the database with a function like <code>DBI::dbListTables()</code> to see the names of the tables present.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbListTables.html'>dbListTables</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;states_abb_region_ut&quot;     &quot;country_census&quot;          
+[3] &quot;spatial_ref_sys&quot;          &quot;electricity_latrine_dots&quot;
+[5] &quot;state_shapes&quot;             &quot;district_shapes&quot;         
+[7] &quot;district_census&quot;          &quot;state_census&quot;            </code></pre>
+</div>
+<p>Note that I did not explicitly create one table in the database, “spatial_ref_sys”. It gets created after installing the PostGIS extension.</p>
+<p>Another useful {DBI} function is <code>dbListFields()</code> to examine the columns in a specific table by specifiying the connection and the table name.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbListFields.html'>dbListFields</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"states_abb_region_ut"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;state&quot;     &quot;abb&quot;       &quot;region&quot;    &quot;year&quot;      &quot;ut_status&quot;</code></pre>
+</div>
+<p>A similar {rpostgis} function gives a bit more information about the nature of the fields stored in any table.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/pkg/rpostgis/man/dbTableInfo.html'>dbTableInfo</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"electricity_latrine_dots"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  column_name    data_type is_nullable character_maximum_length
+1     sctl_sc         text         YES                       NA
+2     dm_sctn         text         YES                       NA
+3        year         date         YES                       NA
+4     categry         text         YES                       NA
+5           n      integer         YES                       NA
+6      sum_hh      integer         YES                       NA
+7    geometry USER-DEFINED         YES                       NA</code></pre>
+</div>
+<h3 id="read-an-entire-table-into-r">Read an entire table into R</h3>
+<p>Having explored the contents of a database connection, I want to start pulling data from the database into R. To start, I can use the <code>DBI::dbReadTable()</code> function to import an entire remote table into R as a dataframe.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>state_census_db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbReadTable.html'>dbReadTable</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"state_census"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>state_census_db</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+</div>
+<p>However, this is rarely optimal, especially if the tables are large. More often than not, you’ll only want a portion of a table stored in a database. In those situations, you want to query the database to retrieve some specified selection of a table.</p>
+<p>That can be achieved in a number of different ways, including:</p>
+<ul>
+<li>SQL code inside an R Markdown chunk with an SQL engine</li>
+<li>SQL code inside the <code>DBI::dbGetQuery()</code> function</li>
+<li>reference a <code>dplyr::tbl()</code> and query it with SQL</li>
+<li>reference a <code>dplyr::tbl()</code> and query it with {dplyr} syntax</li>
+</ul>
+<h3 id="sql-inside-an-r-markdown-chunk">SQL inside an R Markdown chunk</h3>
+<p>The first option for querying an SQL database from R includes just writing SQL code inside an R Markdown chunk where the language engine has been changed to SQL, as demonstrated previously. The query below shows the ten states with the lowest rates of electricity access among rural ST households in 2011.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">SELECT</span> state, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>      total_hh, </span>
+<span id="cb15-3"><a href="#cb15-3"></a>      num_ea, <span class="fu">ROUND</span>(ea:<span class="ch">:numeric</span>, <span class="dv">2</span>) <span class="kw">AS</span> electricity</span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="kw">FROM</span> state_census</span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="kw">WHERE</span> <span class="dt">year</span> <span class="op">=</span> <span class="st">&#39;2011-01-01&#39;</span> <span class="kw">AND</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>      societal_section <span class="op">=</span> <span class="st">&#39;ST&#39;</span> <span class="kw">AND</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>      demo_section <span class="op">=</span> <span class="st">&#39;Rural&#39;</span> <span class="kw">AND</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>      water_source <span class="op">=</span> <span class="st">&#39;All Sources&#39;</span> <span class="kw">AND</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>      water_avail <span class="op">=</span> <span class="st">&#39;Total&#39;</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="kw">ORDER</span> <span class="kw">BY</span> ea</span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+</div>
+<p>Using the output.var chunk option allows me to save the query output into a new dataframe. This however runs into the same problem as <code>dbReadTable()</code> for large datasets.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>lowest_ea_states</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>          state total_hh num_ea electricity
+1         Bihar   387584  27164        0.07
+2        Odisha  2090443 263011        0.13
+3 Uttar Pradesh   359499  63928        0.18
+4         Assam   814320 187676        0.23
+5     Jharkhand  1542273 367042        0.24
+6   West Bengal  1116320 287369        0.26</code></pre>
+</div>
+<h3 id="sql-inside-the-dbgetquery-function">SQL inside the <code>dbGetQuery()</code> function</h3>
+<p>Another approach provides more query flexibility than <code>dbReadTable()</code> while staying within an R chunk to do the job. We can place any SQL query inside the <code>dbGetQuery()</code> function. Here we find the percentage of rural households among South Indian states having access to water within their household premises in 2011.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>water_southern_2011</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>con</span>,
+           <span class='st'>"SELECT s.state, num_total, num_within, 
+                ROUND(within::numeric, 2) AS water_within_home
+            FROM state_census AS s LEFT JOIN states_abb_region_ut AS sabr
+            ON s.state = sabr.state AND
+              s.year = sabr.year
+            WHERE region = 'Southern' AND
+                s.year = '2011-01-01' AND
+                societal_section = 'ALL' AND
+                demo_section = 'Rural' AND
+                water_source = 'All Sources' AND
+                water_avail = 'Total'
+            ORDER BY within DESC;"</span><span class='op'>)</span>
+
+<span class='va'>water_southern_2011</span>
+</code></pre>
+</div>
+<pre><code>           state num_total num_within water_within_home
+1         Kerala   4095674    2984553              0.73
+2     Puducherry     95133      57764              0.61
+3 Andhra Pradesh  14246309    4486906              0.31
+4      Karnataka   7864196    2091969              0.27
+5     Tamil Nadu   9563899    1625884              0.17</code></pre>
+</div>
+<p>Not surprisingly, we can see that Kerala tops the list by a wide margin. Tamil Nadu’s rate is particularly poor.</p>
+<p>The <code>dbGetQuery()</code> function returns a dataframe for the specified query. However, when dealing with large datasets, this may not always be the best form of output. Sometimes you may want a “lazier” approach.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>water_southern_2011</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;data.frame&quot;</code></pre>
+</div>
+<h3 id="reference-a-dplyrtbl-and-query-it-with-sql">Reference a <code>dplyr::tbl()</code> and query it with SQL</h3>
+<p>With the addition of the {dbplyr} package, {dplyr} can be used to access data stored on a remote server. It is designed to be as lazy as possible in that it never pulls data into R unless explicitly requested.</p>
+<p>For example, I can create a reference to a remote table with the <code>tbl()</code> function and execute a query wrapped inside the <code>sql()</code> function. Instead of a dataframe however, this returns a connection object.</p>
+<p>Printing the object will show the data almost like a normal dataframe. However, it won’t return the number of observations (<code>nrow()</code> fails) because the data is not yet actually in R. The query below finds districts in 2011 with the largest raw difference between rates of household access to electricity and latrines.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>largest_gap</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl.html'>tbl</a></span><span class='op'>(</span><span class='va'>con</span>, 
+                  <span class='fu'><a href='https://dbplyr.tidyverse.org/reference/sql.html'>sql</a></span><span class='op'>(</span><span class='st'>"SELECT state, district, ea, la, 
+                                ABS(ea - la) AS gap
+                      FROM district_census
+                      WHERE year = '2011-01-01' AND
+                            societal_section = 'ALL' AND
+                            demo_section = 'Total' AND
+                            water_source = 'All Sources' AND
+                            water_avail = 'Total'
+                      ORDER BY gap DESC"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>largest_gap</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;tbl_PostgreSQLConnection&quot; &quot;tbl_dbi&quot;                 
+[3] &quot;tbl_sql&quot;                  &quot;tbl_lazy&quot;                
+[5] &quot;tbl&quot;                     </code></pre>
+</div>
+<p>Looking at the gap between electricity and latrine rates finds districts all across the country.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>largest_gap</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># Source:   lazy query [?? x 5]
+# Database: postgres 11.4.0
+#   [seanangiolillo@localhost:5432/in_household]
+  state           district      ea    la   gap
+  &lt;chr&gt;           &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Chhattisgarh    Champa     0.898 0.152 0.746
+2 Chhattisgarh    Kabeerdham 0.852 0.132 0.720
+3 Tamil Nadu      Viluppuram 0.931 0.211 0.719
+4 Tamil Nadu      Ariyalur   0.896 0.181 0.715
+5 Jammu &amp; Kashmir Kathua     0.929 0.221 0.708
+6 Karnataka       Gadag      0.919 0.212 0.707</code></pre>
+</div>
+<p>To actually import the data into R, after arriving at the correct query, apply the <code>collect()</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>collected_gap</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/compute.html'>collect</a></span><span class='op'>(</span><span class='va'>largest_gap</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>collected_gap</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>collected_gap</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 640</code></pre>
+</div>
+<h3 id="reference-a-dplyrtbl-and-query-it-with-dplyr-syntax">Reference a <code>dplyr::tbl()</code> and query it with {dplyr} syntax</h3>
+<p>Instead of writing the query as SQL code, I can return the same results with {dplyr} syntax, thanks to {dbplyr}.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'># still a connection</span>
+<span class='va'>my_gap</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl.html'>tbl</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"district_census"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span>
+        <span class='va'>year</span> <span class='op'>==</span> <span class='st'>'2011-01-01'</span>,
+        <span class='va'>societal_section</span> <span class='op'>==</span> <span class='st'>'ALL'</span>,
+        <span class='va'>demo_section</span> <span class='op'>==</span> <span class='st'>'Total'</span>,
+        <span class='va'>water_source</span> <span class='op'>==</span> <span class='st'>'All Sources'</span>,
+        <span class='va'>water_avail</span> <span class='op'>==</span> <span class='st'>'Total'</span>
+    <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>gap <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>ea</span> <span class='op'>-</span> <span class='va'>la</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>state</span>, <span class='va'>district</span>, <span class='va'>ea</span>, <span class='va'>la</span>, <span class='va'>gap</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/desc.html'>desc</a></span><span class='op'>(</span><span class='va'>gap</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>my_gap</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;tbl_PostgreSQLConnection&quot; &quot;tbl_dbi&quot;                 
+[3] &quot;tbl_sql&quot;                  &quot;tbl_lazy&quot;                
+[5] &quot;tbl&quot;                     </code></pre>
+</div>
+<p>{dbplyr} translates {dplyr} code to SQL before sending it to the database. We can actually see the SQL query generated from {dplyr} code using the <code>show_query()</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dplyr.tidyverse.org/reference/explain.html'>show_query</a></span><span class='op'>(</span><span class='va'>my_gap</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;SQL&gt;
+SELECT &quot;state&quot;, &quot;district&quot;, &quot;ea&quot;, &quot;la&quot;, ABS(&quot;ea&quot; - &quot;la&quot;) AS &quot;gap&quot;
+FROM &quot;district_census&quot;
+WHERE ((&quot;year&quot; = &#39;2011-01-01&#39;) AND (&quot;societal_section&quot; = &#39;ALL&#39;) AND (&quot;demo_section&quot; = &#39;Total&#39;) AND (&quot;water_source&quot; = &#39;All Sources&#39;) AND (&quot;water_avail&quot; = &#39;Total&#39;))
+ORDER BY &quot;gap&quot; DESC</code></pre>
+</div>
+<p>It’s not as readable as the original SQL code I wrote, but, on pasting it into pgAdmin, I can see that it works. The {dbplyr} vignette notes that it may not be the most natural SQL code for more complicated queries, but, if you don’t know any SQL, it’s a great substitute.</p>
+<h3 id="use-cases">Use Cases</h3>
+<p>Thus far, the queries shown have been fairly simple. I now want to generate some more interesting queries.</p>
+<p>My <a href="">project</a> exploring how access to electricity covaries with access to latrines revealed a number of districts that fell below the national average in access to electricity, but above the national average in access to latrines. As this is an unusual combination, I want to query the database to find these districts.</p>
+<p>Among all 2011 households, at the All-India level, 67% and 47% were the national averages for household access to electricity and latrines, respectively, as shown in the query below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>con</span>, 
+            <span class='st'>"SELECT ROUND(ea, 2) AS electricity, 
+                    ROUND(la, 2) AS latrines
+            FROM country_census
+            WHERE year = '2011-01-01' AND
+                  societal_section = 'ALL' AND
+                  demo_section = 'Total' AND
+                  water_source = 'All Sources' AND
+                  water_avail = 'Total'"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  electricity latrines
+1        0.67     0.47</code></pre>
+</div>
+<p>Next, with an SQL query in an R Markdown chunk with a SQL engine, I’ll save a view of all districts (matching the same year and other criteria) that fall below the national average in electricity access and above the national average in latrine access.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb26"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> districts_below_ea_above_la <span class="kw">AS</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>    <span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>    <span class="kw">FROM</span> district_census</span>
+<span id="cb26-4"><a href="#cb26-4"></a>    <span class="kw">WHERE</span> <span class="dt">year</span> <span class="op">=</span> <span class="st">&#39;2011-01-01&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>        societal_section <span class="op">=</span> <span class="st">&#39;ALL&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>        demo_section <span class="op">=</span> <span class="st">&#39;Total&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-7"><a href="#cb26-7"></a>        water_source <span class="op">=</span> <span class="st">&#39;All Sources&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>        water_avail <span class="op">=</span> <span class="st">&#39;Total&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>        ea <span class="op">&lt;</span> (</span>
+<span id="cb26-10"><a href="#cb26-10"></a>            <span class="kw">SELECT</span> ea</span>
+<span id="cb26-11"><a href="#cb26-11"></a>            <span class="kw">FROM</span> country_census</span>
+<span id="cb26-12"><a href="#cb26-12"></a>            <span class="kw">WHERE</span> <span class="dt">year</span> <span class="op">=</span> <span class="st">&#39;2011-01-01&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-13"><a href="#cb26-13"></a>            societal_section <span class="op">=</span> <span class="st">&#39;ALL&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-14"><a href="#cb26-14"></a>            demo_section <span class="op">=</span> <span class="st">&#39;Total&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-15"><a href="#cb26-15"></a>            water_source <span class="op">=</span> <span class="st">&#39;All Sources&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-16"><a href="#cb26-16"></a>            water_avail <span class="op">=</span> <span class="st">&#39;Total&#39;</span></span>
+<span id="cb26-17"><a href="#cb26-17"></a>        ) <span class="kw">AND</span></span>
+<span id="cb26-18"><a href="#cb26-18"></a>        la <span class="op">&gt;</span> (</span>
+<span id="cb26-19"><a href="#cb26-19"></a>            <span class="kw">SELECT</span> la</span>
+<span id="cb26-20"><a href="#cb26-20"></a>            <span class="kw">FROM</span> country_census</span>
+<span id="cb26-21"><a href="#cb26-21"></a>            <span class="kw">WHERE</span> <span class="dt">year</span> <span class="op">=</span> <span class="st">&#39;2011-01-01&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-22"><a href="#cb26-22"></a>            societal_section <span class="op">=</span> <span class="st">&#39;ALL&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-23"><a href="#cb26-23"></a>            demo_section <span class="op">=</span> <span class="st">&#39;Total&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-24"><a href="#cb26-24"></a>            water_source <span class="op">=</span> <span class="st">&#39;All Sources&#39;</span> <span class="kw">AND</span></span>
+<span id="cb26-25"><a href="#cb26-25"></a>            water_avail <span class="op">=</span> <span class="st">&#39;Total&#39;</span></span>
+<span id="cb26-26"><a href="#cb26-26"></a>        );</span></code></pre></div>
+</div>
+<p>Then in the code below, I join two references to remote tables using the same {dplyr} syntax I would use to join two dataframes. Counting the districts by region reveals that 41 of these 59 regions fall in the Northeastern states.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl.html'>tbl</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"districts_below_ea_above_la"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span>
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl.html'>tbl</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"states_abb_region_ut"</span><span class='op'>)</span>, 
+        by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"state"</span>, <span class='st'>"year"</span><span class='op'>)</span>
+    <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>region</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/compute.html'>collect</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 4 x 3
+# Groups:   region [4]
+  region       .add      n
+  &lt;chr&gt;        &lt;lgl&gt; &lt;dbl&gt;
+1 Northeastern TRUE     41
+2 Northern     TRUE      9
+3 Eastern      TRUE      7
+4 Western      TRUE      2</code></pre>
+</div>
+<p>Finally, let’s plot these districts on a map.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'># join region column into selected 59 districts</span>
+<span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl.html'>tbl</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"districts_below_ea_above_la"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span>
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tbl.html'>tbl</a></span><span class='op'>(</span><span class='va'>con</span>, <span class='st'>"states_abb_region_ut"</span><span class='op'>)</span>, 
+        by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"state"</span>, <span class='st'>"year"</span><span class='op'>)</span>
+    <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/compute.html'>collect</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='co'># join in corresponding district shapes</span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span>
+        <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='va'>con</span>, query <span class='op'>=</span> <span class='st'>"SELECT * 
+                                FROM district_shapes 
+                                WHERE year = '2011-01-01';"</span><span class='op'>)</span>,
+        by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"district"</span>, <span class='st'>"state"</span>, <span class='st'>"year"</span><span class='op'>)</span>
+    <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='co'># add background state shapes</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>
+        data <span class='op'>=</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_read.html'>st_read</a></span><span class='op'>(</span><span class='va'>con</span>, query <span class='op'>=</span> <span class='st'>"SELECT * 
+                            FROM state_shapes 
+                            WHERE year = '2011-01-01'"</span><span class='op'>)</span>
+        <span class='op'>)</span> <span class='op'>+</span>
+    <span class='co'># color 59 districts by region</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>region</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>datum <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>
+        title <span class='op'>=</span> <span class='st'>"59 districts fall below the national average in access to\nelectricity and above the national average in access to latrines."</span>,
+        subtitle <span class='op'>=</span> <span class='st'>"41 of these are in the Northeast."</span>,
+        caption <span class='op'>=</span> <span class='st'>"Data refers to all 2011 households"</span>,
+        fill <span class='op'>=</span> <span class='st'>"Region"</span>
+    <span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+        plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>11</span><span class='op'>)</span>,
+        plot.subtitle <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+    <span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsave.html'>ggsave</a></span><span class='op'>(</span><span class='st'>"img/above_below_map.png"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<p><img src="img/above_below_map.png" width="975" /></p>
+</div>
+<h2 id="final-word-and-further-resources">Final Word and Further Resources</h2>
+<p>When finished, it’s advised as good practice to formally disconnect from the database. The following command does this.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbDisconnect.html'>dbDisconnect</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<p>In this post, I’ve tried to introduce a few different options for the following:</p>
+<ul>
+<li>Connecting to a remote SQL database from R</li>
+<li>Writing data from R to a database</li>
+<li>Querying data from a database in R</li>
+</ul>
+<p>In compiling this post, I found all of the resources below to be especially useful:</p>
+<ul>
+<li><p>CRAN’s manual on R Data Import/Export has a helpful <a href="https://cran.r-project.org/doc/manuals/R-data.html#Relational-databases">section on relational databases</a> introducing uses for a databse and the RDBMS structure.</p></li>
+<li><p>RStudio has a <a href="https://db.rstudio.com/getting-started/database-queries/">website</a> devoted to using databases with R covering topics like connections, queries, and best practices.</p></li>
+<li><p>Data Carpentry has a nice <a href="https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html">tutorial</a> on accessing a database from R and running queries.</p></li>
+<li><p>For a more in-depth look at SQL itself, I found the book <a href="https://nostarch.com/practicalSQL">Practical SQL</a> by Anthony DeBarros to be a great starting point.</p></li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<div class="article-footer">
+  <p class="social_footer">
+    <span class="disqus-comments">
+      <i class="fas fa-comments"></i>
+      &nbsp;
+      <span class="disqus-comment-count" data-disqus-identifier="posts/2019-07-02-working-with-databases-in-r/">Comment on this article</span>
+    </span>
+    <span class="article-sharing">
+      Share: &nbsp;
+      <a href="https://twitter.com/share?text=Working%20with%20Databases%20in%20R&amp;url=https%3A%2F%2Fsean.rbind.io%2Fposts%2F2019-07-02-working-with-databases-in-r%2F">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fsean.rbind.io%2Fposts%2F2019-07-02-working-with-databases-in-r%2F&amp;title=Working%20with%20Databases%20in%20R">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </span>
+  </p>
+  <script id="dsq-count-scr" src="https://distill_blog.disqus.com/count.js" async></script>
+  <div id="disqus_thread" class="hidden"></div>
+  <script>
+var disqus_config = function () {
+  this.page.url = 'https://sean.rbind.io/posts/2019-07-02-working-with-databases-in-r/';
+  this.page.identifier = 'posts/2019-07-02-working-with-databases-in-r/';
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://distill_blog.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script>
+</div>
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="reuse">Reuse</h3>
+  <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
