@@ -1,5 +1,24 @@
 [
   {
+    "path": "posts/2021-09-05-an-r-data-package-for-indian-independence-day-speeches/",
+    "title": "An R Data Package for Indian Independence Day Speeches",
+    "description": "Introducing an R package including a dataset of full-text English renderings of Indian Independence Day speeches, delivered annually on 15 August since 1947.",
+    "author": [],
+    "date": "2021-09-05",
+    "categories": [
+      "NLP",
+      "open-data",
+      "r-packages",
+      "shiny"
+    ],
+    "contents": "\nWhile living in Delhi, I made trips to various libraries to access the English renderings of Indian Independence Day speeches in the volumes of collected speeches from every Prime Minister. I digitized them and collected the results, along with those already accessible, into an R package.\nSince 1947, I’m only missing two years.\nYou can find the details of what’s included, how to install it (or just download the final CSV), some basic analysis, and a shiny app in the package’s GitHub repository.\n\n\n\n",
+    "preview": "posts/2021-09-05-an-r-data-package-for-indian-independence-day-speeches/img/featured.png",
+    "last_modified": "2021-12-20T21:07:14-05:00",
+    "input_file": {},
+    "preview_width": 2160,
+    "preview_height": 1440
+  },
+  {
     "path": "posts/2019-07-02-working-with-databases-in-r/",
     "title": "Working with Databases in R",
     "description": "Use R to structure and query database tables of Indian census data",
