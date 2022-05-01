@@ -86,49 +86,43 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Sean Angiolillo: PostgreSQL Database Design</title>
+<title>Sean Angiolillo: Text Data in PostgreSQL</title>
 
-<meta property="description" itemprop="description" content="Create a normalized SQL database from a CSV file of India&#39;s Independence Day speeches."/>
+<meta property="description" itemprop="description" content="Use regular expressions and text analysis functions on India&#39;s Independence day speeches."/>
 
-<link rel="canonical" href="https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/"/>
+<link rel="canonical" href="https://sean.rbind.io/posts/2022-05-01-text-data-in-postgresql/"/>
 <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"/>
 <link rel="icon" type="image/png" href="../../static/identicon.png"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2022-04-25"/>
-<meta property="article:created" itemprop="dateCreated" content="2022-04-25"/>
+<meta property="article:published" itemprop="datePublished" content="2022-05-01"/>
+<meta property="article:created" itemprop="dateCreated" content="2022-05-01"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Sean Angiolillo: PostgreSQL Database Design"/>
+<meta property="og:title" content="Sean Angiolillo: Text Data in PostgreSQL"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Create a normalized SQL database from a CSV file of India&#39;s Independence Day speeches."/>
-<meta property="og:url" content="https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/"/>
-<meta property="og:image" content="https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/img/featured.png"/>
-<meta property="og:image:width" content="3520"/>
-<meta property="og:image:height" content="1820"/>
+<meta property="og:description" content="Use regular expressions and text analysis functions on India&#39;s Independence day speeches."/>
+<meta property="og:url" content="https://sean.rbind.io/posts/2022-05-01-text-data-in-postgresql/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Sean Angiolillo"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:title" content="Sean Angiolillo: PostgreSQL Database Design"/>
-<meta property="twitter:description" content="Create a normalized SQL database from a CSV file of India&#39;s Independence Day speeches."/>
-<meta property="twitter:url" content="https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/"/>
-<meta property="twitter:image" content="https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/img/featured.png"/>
-<meta property="twitter:image:width" content="3520"/>
-<meta property="twitter:image:height" content="1820"/>
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="Sean Angiolillo: Text Data in PostgreSQL"/>
+<meta property="twitter:description" content="Use regular expressions and text analysis functions on India&#39;s Independence day speeches."/>
+<meta property="twitter:url" content="https://sean.rbind.io/posts/2022-05-01-text-data-in-postgresql/"/>
 <meta property="twitter:site" content="@seanangiolillo"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","date","categories","output","draft","preview","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY-NC"]},{"type":"character","attributes":{},"value":["PostgreSQL Database Design"]},{"type":"character","attributes":{},"value":["Create a normalized SQL database from a CSV file of India's Independence Day speeches."]},{"type":"character","attributes":{},"value":["2022-04-25"]},{"type":"character","attributes":{},"value":["SQL","PostgreSQL","DBI","RPostgres"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["img/featured.png"]},{"type":"character","attributes":{},"value":["https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","categories","date","output","draft","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY-NC"]},{"type":"character","attributes":{},"value":["Text Data in PostgreSQL"]},{"type":"character","attributes":{},"value":["Use regular expressions and text analysis functions on India's Independence day speeches."]},{"type":"character","attributes":{},"value":["SQL","PostgreSQL","DBI","RPostgres","NLP"]},{"type":"character","attributes":{},"value":["2022-05-01"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["https://sean.rbind.io/posts/2022-05-01-text-data-in-postgresql/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["img/featured.png","postgresql-database-design_files/anchor-4.2.2/anchor.min.js","postgresql-database-design_files/bowser-1.9.3/bowser.min.js","postgresql-database-design_files/distill-2.2.21/template.v2.js","postgresql-database-design_files/header-attrs-2.11/header-attrs.js","postgresql-database-design_files/jquery-3.5.1/AUTHORS.txt","postgresql-database-design_files/jquery-3.5.1/jquery-1.12.4.js","postgresql-database-design_files/jquery-3.5.1/jquery-1.12.4.min.js","postgresql-database-design_files/jquery-3.5.1/jquery-1.12.4.min.map","postgresql-database-design_files/jquery-3.5.1/jquery-2.2.4.js","postgresql-database-design_files/jquery-3.5.1/jquery-2.2.4.min.js","postgresql-database-design_files/jquery-3.5.1/jquery-2.2.4.min.map","postgresql-database-design_files/jquery-3.5.1/jquery-3.5.1.js","postgresql-database-design_files/jquery-3.5.1/jquery-3.5.1.min.js","postgresql-database-design_files/jquery-3.5.1/jquery-3.5.1.min.map","postgresql-database-design_files/jquery-3.5.1/LICENSE.txt","postgresql-database-design_files/popper-2.6.0/popper.min.js","postgresql-database-design_files/tippy-6.2.7/tippy-bundle.umd.min.js","postgresql-database-design_files/tippy-6.2.7/tippy-light-border.css","postgresql-database-design_files/tippy-6.2.7/tippy.css","postgresql-database-design_files/tippy-6.2.7/tippy.umd.min.js","postgresql-database-design_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["text-data-in-postgresql_files/anchor-4.2.2/anchor.min.js","text-data-in-postgresql_files/bowser-1.9.3/bowser.min.js","text-data-in-postgresql_files/distill-2.2.21/template.v2.js","text-data-in-postgresql_files/header-attrs-2.11/header-attrs.js","text-data-in-postgresql_files/jquery-3.5.1/AUTHORS.txt","text-data-in-postgresql_files/jquery-3.5.1/jquery-1.12.4.js","text-data-in-postgresql_files/jquery-3.5.1/jquery-1.12.4.min.js","text-data-in-postgresql_files/jquery-3.5.1/jquery-1.12.4.min.map","text-data-in-postgresql_files/jquery-3.5.1/jquery-2.2.4.js","text-data-in-postgresql_files/jquery-3.5.1/jquery-2.2.4.min.js","text-data-in-postgresql_files/jquery-3.5.1/jquery-2.2.4.min.map","text-data-in-postgresql_files/jquery-3.5.1/jquery-3.5.1.js","text-data-in-postgresql_files/jquery-3.5.1/jquery-3.5.1.min.js","text-data-in-postgresql_files/jquery-3.5.1/jquery-3.5.1.min.map","text-data-in-postgresql_files/jquery-3.5.1/LICENSE.txt","text-data-in-postgresql_files/popper-2.6.0/popper.min.js","text-data-in-postgresql_files/tippy-6.2.7/tippy-bundle.umd.min.js","text-data-in-postgresql_files/tippy-6.2.7/tippy-light-border.css","text-data-in-postgresql_files/tippy-6.2.7/tippy.css","text-data-in-postgresql_files/tippy-6.2.7/tippy.umd.min.js","text-data-in-postgresql_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2395,7 +2389,7 @@ gtag('config', 'UA-120637374-1');
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"PostgreSQL Database Design","description":"Create a normalized SQL database from a CSV file of India's Independence Day speeches.","authors":[],"publishedDate":"2022-04-25T00:00:00.000-04:00"}
+{"title":"Text Data in PostgreSQL","description":"Use regular expressions and text analysis functions on India's Independence day speeches.","authors":[],"publishedDate":"2022-05-01T00:00:00.000-04:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2429,16 +2423,17 @@ gtag('config', 'UA-120637374-1');
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>PostgreSQL Database Design</h1>
+<h1>Text Data in PostgreSQL</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
   <a href="../../index.html#category:SQL" class="dt-tag">SQL</a>
   <a href="../../index.html#category:PostgreSQL" class="dt-tag">PostgreSQL</a>
   <a href="../../index.html#category:DBI" class="dt-tag">DBI</a>
   <a href="../../index.html#category:RPostgres" class="dt-tag">RPostgres</a>
+  <a href="../../index.html#category:NLP" class="dt-tag">NLP</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>Create a normalized SQL database from a CSV file of India’s Independence Day speeches.</p></p>
+<p><p>Use regular expressions and text analysis functions on India’s Independence day speeches.</p></p>
 </div>
 
 
@@ -2447,486 +2442,448 @@ gtag('config', 'UA-120637374-1');
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#make-a-connection">Make a Connection</a></li>
-<li><a href="#normalize-a-database">Normalize a Database</a>
-<ul>
-<li><a href="#create-a-raw-table">Create a raw table</a></li>
-<li><a href="#copy-csv-file-into-the-raw-table">Copy CSV file into the raw table</a></li>
-<li><a href="#handle-missing-data">Handle missing data</a></li>
-<li><a href="#insert-distinct-data-into-separate-tables">Insert distinct data into separate tables</a></li>
-<li><a href="#update-the-raw-table">Update the raw table</a></li>
-<li><a href="#make-a-new-table-of-only-foreign-keys">Make a new table of only foreign keys</a></li>
-</ul></li>
-<li><a href="#create-an-entity-relationship-diagram">Create an entity-relationship diagram</a></li>
-<li><a href="#test-some-queries">Test some queries</a></li>
-<li><a href="#wrap-up">Wrap-up</a></li>
+<li><a href="#filter-by-regular-expression">Filter by regular expression</a></li>
+<li><a href="#find-speech-lengths">Find speech lengths</a></li>
+<li><a href="#create-one-row-per-word">Create one row per word</a></li>
+<li><a href="#find-the-most-frequent-words">Find the most frequent words</a></li>
+<li><a href="#find-distinct-words">Find distinct words</a></li>
+<li><a href="#counts-without-stop-words">Counts without stop words</a></li>
+<li><a href="#count-stemmed-keywords">Count stemmed keywords</a></li>
 </ul>
 </nav>
 </div>
-<p>I recently completed the <a href="https://www.coursera.org/specializations/postgresql-for-everybody">PostgreSQL for Everybody specialization</a> on Coursera from the University of Michigan.</p>
-<p>This post builds on knowledge from the first two courses in the series, <a href="https://www.coursera.org/learn/database-design-postgresql">Database Design and Basic SQL in PostgreSQL</a> and <a href="https://www.coursera.org/learn/intermediate-postgresql">Intermediate PostgreSQL</a>. I’ll demonstrate how to:</p>
-<ul>
-<li>structure a CSV file into relational tables without vertical replication;</li>
-<li>use the normalized database for some basic queries.</li>
-</ul>
-<p>I previously collected India’s Independence day speeches for an <a href="https://github.com/seanangio/aug15">R data package</a>, and included it as a <a href="https://raw.githubusercontent.com/seanangio/aug15/main/inst/final_csv/corpus.csv">CSV file</a>, and so I can use that for demonstration.</p>
-<h2 id="make-a-connection">Make a Connection</h2>
-<p>The specialization focused on using psql or Python as the client to send commands to the PostgreSQL server. Here though I’ll use R as the client (and later pgAdmin).</p>
+<p>After demonstrating the principles of database design in my <a href="https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/">last post</a>, the next major focus of the <a href="https://www.coursera.org/specializations/postgresql-for-everybody">PostgreSQL for Everybody specialization</a> was working with text data, which is again convenient to explore with my <a href="https://raw.githubusercontent.com/seanangio/aug15/main/inst/final_csv/corpus.csv">dataset of Indian Independence day speeches</a>.</p>
+<h2 id="filter-by-regular-expression">Filter by regular expression</h2>
+<p>I had known about the <code>LIKE</code> operator to search for specified patterns in a column, but the specialization introduced how you can also just use regular expressions with the <code>~</code> operator.</p>
+<p>For example, I could find all of the references to the US (using a regex to capture the most common spelling variations—while excluding the USSR from the results).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>con</span> <span class='op'>&lt;-</span> <span class='fu'>DBI</span><span class='fu'>::</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span><span class='fu'>RPostgres</span><span class='fu'>::</span><span class='fu'><a href='https://rpostgres.r-dbi.org/reference/Postgres.html'>Postgres</a></span><span class='op'>(</span><span class='op'>)</span>,
-                      dbname <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AUG15_dbname"</span><span class='op'>)</span>,
-                      host <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AUG15_host"</span><span class='op'>)</span>,
-                      user <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AUG15_user"</span><span class='op'>)</span>,
-                      password <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AUG15_password"</span><span class='op'>)</span>,
-                      port <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"AUG15_port"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<h2 id="normalize-a-database">Normalize a Database</h2>
-<p>The specialization discussed what it means to normalize a database, why that is important, and how to do it starting from a CSV file that has vertical replication of string data.</p>
-<h3 id="create-a-raw-table">Create a raw table</h3>
-<p>My first step was to create an empty table in the database matching the schema of the CSV—with the addition of an "_id" integer column for every text column.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> corpus_raw;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> corpus_raw</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>   (<span class="dt">year</span> <span class="dt">INTEGER</span>, </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   pm TEXT, pm_id <span class="dt">INTEGER</span>, </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   party TEXT, party_id <span class="dt">INTEGER</span>, </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   title TEXT, title_id <span class="dt">INTEGER</span>, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   footnote TEXT, footnote_id <span class="dt">INTEGER</span>, </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>   <span class="kw">source</span> TEXT, source_id <span class="dt">INTEGER</span>, </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>   url TEXT, url_id <span class="dt">INTEGER</span>, </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>   text TEXT, text_id <span class="dt">INTEGER</span>);</span></code></pre></div>
-</div>
-<h3 id="copy-csv-file-into-the-raw-table">Copy CSV file into the raw table</h3>
-<p>Once I made the empty raw table, I copied in the data from the CSV file with psql.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- wget https://raw.githubusercontent.com/seanangio/aug15/main/inst/final_csv/corpus.csv</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>\<span class="kw">copy</span> corpus_raw (<span class="dt">year</span>, pm, party, title, footnote, <span class="kw">source</span>, url, text) </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="st">&#39;corpus.csv&#39;</span> <span class="kw">WITH</span> DELIMITER <span class="st">&#39;,&#39;</span> CSV <span class="kw">HEADER</span>;</span></code></pre></div>
-</div>
-<h3 id="handle-missing-data">Handle missing data</h3>
-<p>Before doing anything though, I want to handle the missing data values.</p>
-<p>R codes missing data as NA, and so when I copied the CSV file into PostgreSQL tables it imported these values as the string “NA”. SQL though represents missing values with the value NULL, and so I should recode tables with missing values accordingly.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SET</span> title <span class="op">=</span> (<span class="cf">CASE</span> <span class="cf">WHEN</span> title <span class="op">=</span> <span class="st">&#39;NA&#39;</span> <span class="cf">THEN</span> <span class="kw">NULL</span> <span class="cf">ELSE</span> title <span class="cf">END</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      footnote <span class="op">=</span> (<span class="cf">CASE</span> <span class="cf">WHEN</span> footnote <span class="op">=</span> <span class="st">&#39;NA&#39;</span> <span class="cf">THEN</span> <span class="kw">NULL</span> <span class="cf">ELSE</span> footnote <span class="cf">END</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">source</span> <span class="op">=</span> (<span class="cf">CASE</span> <span class="cf">WHEN</span> <span class="kw">source</span> <span class="op">=</span> <span class="st">&#39;NA&#39;</span> <span class="cf">THEN</span> <span class="kw">NULL</span> <span class="cf">ELSE</span> <span class="kw">source</span> <span class="cf">END</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      url <span class="op">=</span> (<span class="cf">CASE</span> <span class="cf">WHEN</span> url <span class="op">=</span> <span class="st">&#39;NA&#39;</span> <span class="cf">THEN</span> <span class="kw">NULL</span> <span class="cf">ELSE</span> url <span class="cf">END</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      text <span class="op">=</span> (<span class="cf">CASE</span> <span class="cf">WHEN</span> text <span class="op">=</span> <span class="st">&#39;NA&#39;</span> <span class="cf">THEN</span> <span class="kw">NULL</span> <span class="cf">ELSE</span> text <span class="cf">END</span>);</span></code></pre></div>
-</div>
-<p>Now with null values representing all of the missing data, I can continue.</p>
-<h3 id="insert-distinct-data-into-separate-tables">Insert distinct data into separate tables</h3>
-<p>From the raw table, I then extracted the distinct data for every text column into its own table. This let me store exactly one copy of every string.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> party <span class="kw">CASCADE</span>;</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> party (</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  name <span class="dt">VARCHAR</span>(<span class="dv">128</span>) <span class="kw">UNIQUE</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> party (name) </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> party </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus_raw </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> party;</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> pm <span class="kw">CASCADE</span>;</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> pm (</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  name <span class="dt">VARCHAR</span>(<span class="dv">128</span>),</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> pm (name)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> pm</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus_raw </span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> pm;</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> title <span class="kw">CASCADE</span>;</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> title (</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL,</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  title <span class="dt">VARCHAR</span>(<span class="dv">128</span>),</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>)</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> title (title) </span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> title </span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus_raw </span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> title;</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> footnote <span class="kw">CASCADE</span>;</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> footnote (</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL,</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  footnote <span class="dt">VARCHAR</span>(<span class="dv">1056</span>),</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>)</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> footnote (footnote) </span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> footnote </span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus_raw </span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> footnote;</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> <span class="kw">source</span> <span class="kw">CASCADE</span>;</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="kw">source</span> (</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL,</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="kw">source</span> <span class="dt">VARCHAR</span>(<span class="dv">1056</span>),</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>)</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="kw">source</span> (<span class="kw">source</span>) </span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> <span class="kw">source</span> </span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus_raw </span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> <span class="kw">source</span>;</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> url <span class="kw">CASCADE</span>;</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> url (</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL,</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  url <span class="dt">VARCHAR</span>(<span class="dv">1056</span>),</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>)</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> url (url) </span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> url </span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus_raw </span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> url;</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> text <span class="kw">CASCADE</span>;</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> text (</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL,</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>  speech TEXT,</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">id</span>)</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> text (speech) </span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> text </span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus_raw </span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> text;</span></code></pre></div>
-</div>
-<p>Now every table, such as <code>party</code> below, has an integer ID for every unique string, which is stored in the database only once.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> party;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dt">year</span>, pm.name,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  regexp_matches(text.speech, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;(United States|United States of America|USA|U.S.A.|U\.S\.|US(?!SR))&#39;</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;g&#39;</span>) <span class="kw">AS</span> us_occurrence</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> pm <span class="kw">ON</span> corpus.pm_id <span class="op">=</span> pm.<span class="kw">id</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> text <span class="kw">ON</span> corpus.text_id <span class="op">=</span> text.<span class="kw">id</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">year</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">11</span>;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-6">Table 1: </span>4 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">id</th>
-<th style="text-align: left;">name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">BJP</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">INC</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">Janata Dal</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">Janata Party</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<h3 id="update-the-raw-table">Update the raw table</h3>
-<p>I then inserted these integer keys into the raw table.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw <span class="kw">SET</span> party_id <span class="op">=</span> (<span class="kw">SELECT</span> party.<span class="kw">id</span> <span class="kw">FROM</span> party <span class="kw">WHERE</span> party.name <span class="op">=</span> corpus_raw.party);</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw <span class="kw">SET</span> pm_id <span class="op">=</span> (<span class="kw">SELECT</span> pm.<span class="kw">id</span> <span class="kw">FROM</span> pm <span class="kw">WHERE</span> pm.name <span class="op">=</span> corpus_raw.pm);</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw <span class="kw">SET</span> title_id <span class="op">=</span> (<span class="kw">SELECT</span> title.<span class="kw">id</span> <span class="kw">FROM</span> title <span class="kw">WHERE</span> title.title <span class="op">=</span> corpus_raw.title);</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw <span class="kw">SET</span> footnote_id <span class="op">=</span> (<span class="kw">SELECT</span> footnote.<span class="kw">id</span> <span class="kw">FROM</span> footnote </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> footnote.footnote <span class="op">=</span> corpus_raw.footnote);</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw <span class="kw">SET</span> source_id <span class="op">=</span> (<span class="kw">SELECT</span> <span class="kw">source</span>.<span class="kw">id</span> <span class="kw">FROM</span> <span class="kw">source</span> <span class="kw">WHERE</span> <span class="kw">source</span>.<span class="kw">source</span> <span class="op">=</span> corpus_raw.<span class="kw">source</span>);</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw <span class="kw">SET</span> url_id <span class="op">=</span> (<span class="kw">SELECT</span> url.<span class="kw">id</span> <span class="kw">FROM</span> url <span class="kw">WHERE</span> url.url <span class="op">=</span> corpus_raw.url);</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> corpus_raw <span class="kw">SET</span> text_id <span class="op">=</span> (<span class="kw">SELECT</span> text.<span class="kw">id</span> <span class="kw">FROM</span> text <span class="kw">WHERE</span> text.speech <span class="op">=</span> corpus_raw.text);</span></code></pre></div>
-</div>
-<h3 id="make-a-new-table-of-only-foreign-keys">Make a new table of only foreign keys</h3>
-<p>I then made a copy of the raw table, removed the redundant text columns, and added the foreign key constraints.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- copy to a new table</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> corpus;</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> corpus <span class="kw">AS</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">TABLE</span> corpus_raw;</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- drop un-normalized redundant text columns</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> party,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> pm,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> title,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> footnote,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> <span class="kw">source</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> url,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> text;</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">-- add foreign key constraints</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> fk_pm</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">FOREIGN</span> <span class="kw">KEY</span> (pm_id) </span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="kw">REFERENCES</span> pm (<span class="kw">id</span>);</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> fk_party</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="kw">FOREIGN</span> <span class="kw">KEY</span> (party_id) </span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="kw">REFERENCES</span> party (<span class="kw">id</span>);</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> fk_title</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="kw">FOREIGN</span> <span class="kw">KEY</span> (title_id) </span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="kw">REFERENCES</span> title (<span class="kw">id</span>);</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> fk_footnote</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="kw">FOREIGN</span> <span class="kw">KEY</span> (footnote_id) </span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="kw">REFERENCES</span> footnote (<span class="kw">id</span>);</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> fk_source</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="kw">FOREIGN</span> <span class="kw">KEY</span> (source_id) </span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="kw">REFERENCES</span> <span class="kw">source</span> (<span class="kw">id</span>);</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> fk_url</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="kw">FOREIGN</span> <span class="kw">KEY</span> (url_id) </span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="kw">REFERENCES</span> url (<span class="kw">id</span>);</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> corpus</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> fk_text</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="kw">FOREIGN</span> <span class="kw">KEY</span> (text_id) </span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="kw">REFERENCES</span> text (<span class="kw">id</span>);</span></code></pre></div>
-</div>
-<h2 id="create-an-entity-relationship-diagram">Create an entity-relationship diagram</h2>
-<p>I also loaded all of this into pgAdmin as one easy way to create an ERD.</p>
-<figure>
-<img src="img/featured.png" alt="ERD for aug15 database" /><figcaption aria-hidden="true">ERD for aug15 database</figcaption>
-</figure>
-<h2 id="test-some-queries">Test some queries</h2>
-<p>My last step was to confirm the results with some test queries. The new <code>corpus</code> table has only integer columns (which refer to strings in other tables).</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> corpus <span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">year</span> <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
-<div class="knitsql-table">
-<table>
-<caption><span id="tab:unnamed-chunk-9">Table 2: </span>5 records</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">year</th>
-<th style="text-align: right;">pm_id</th>
-<th style="text-align: right;">party_id</th>
-<th style="text-align: right;">title_id</th>
-<th style="text-align: right;">footnote_id</th>
-<th style="text-align: right;">source_id</th>
-<th style="text-align: right;">url_id</th>
-<th style="text-align: right;">text_id</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1947</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">17</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1948</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">16</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1949</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">61</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">51</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1950</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">44</td>
-<td style="text-align: right;">54</td>
-<td style="text-align: right;">22</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">52</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1951</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">57</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">19</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>I can recreate the original table through a series of joins. For example, I can find which prime ministers have given the most speeches.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> pm.name <span class="kw">AS</span> pm, </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    party.name <span class="kw">AS</span> party, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> speech_count</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> pm <span class="kw">ON</span> corpus.pm_id <span class="op">=</span> pm.<span class="kw">id</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> party <span class="kw">ON</span> corpus.party_id <span class="op">=</span> party.<span class="kw">id</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> pm.name, party.name</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">DESC</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
-<div class="knitsql-table">
-<table>
-<caption><span id="tab:unnamed-chunk-10">Table 3: </span>Displaying records 1 - 10</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">pm</th>
-<th style="text-align: left;">party</th>
-<th style="text-align: right;">speech_count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Jawaharlal Nehru</td>
-<td style="text-align: left;">INC</td>
-<td style="text-align: right;">17</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Indira Gandhi</td>
-<td style="text-align: left;">INC</td>
-<td style="text-align: right;">16</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Manmohan Singh</td>
-<td style="text-align: left;">INC</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Narendra Modi</td>
-<td style="text-align: left;">BJP</td>
-<td style="text-align: right;">8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">A.B. Vajpayee</td>
-<td style="text-align: left;">BJP</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">P.V. Narasimha Rao</td>
-<td style="text-align: left;">INC</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Rajiv Gandhi</td>
-<td style="text-align: left;">INC</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Morarji Desai</td>
-<td style="text-align: left;">Janata Party</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">L.B. Shastri</td>
-<td style="text-align: left;">INC</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">I.K. Gujral</td>
-<td style="text-align: left;">Janata Dal</td>
-<td style="text-align: right;">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>*<em>(This assumes though Nehru gave a speech in 1962, which I’ve never found evidence of having taken place).</em></p>
-<p>The focus of the specialization was not writing SQL itself, but it did show some techniques, such as for working with dates and casting columns. For example, I calculated the number of days since every speech.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dt">year</span>, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">EXTRACT</span>(<span class="dt">DAY</span> <span class="kw">FROM</span> (</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        NOW() <span class="op">-</span> (<span class="dt">year</span> <span class="op">||</span> <span class="st">&#39;-08-15&#39;</span>):<span class="ch">:date</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    )) <span class="kw">AS</span> days_since_speech</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">year</span> <span class="kw">DESC</span> </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
-<div class="knitsql-table">
-<table>
-<caption><span id="tab:unnamed-chunk-11">Table 4: </span>5 records</caption>
+<caption><span id="tab:unnamed-chunk-1">Table 1: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">year</th>
-<th style="text-align: right;">days_since_speech</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">us_occurrence</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">2021</td>
-<td style="text-align: right;">259</td>
+<td style="text-align: right;">1951</td>
+<td style="text-align: left;">Jawaharlal Nehru</td>
+<td style="text-align: left;">{“United States of America”}</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2020</td>
-<td style="text-align: right;">624</td>
+<td style="text-align: right;">1959</td>
+<td style="text-align: left;">Jawaharlal Nehru</td>
+<td style="text-align: left;">{“United States”}</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">2019</td>
-<td style="text-align: right;">990</td>
+<td style="text-align: right;">1970</td>
+<td style="text-align: left;">Indira Gandhi</td>
+<td style="text-align: left;">{U.S.}</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2018</td>
-<td style="text-align: right;">1355</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: left;">P.V. Narasimha Rao</td>
+<td style="text-align: left;">{USA}</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">2017</td>
-<td style="text-align: right;">1720</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">A.B. Vajpayee</td>
+<td style="text-align: left;">{US}</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2005</td>
+<td style="text-align: left;">Manmohan Singh</td>
+<td style="text-align: left;">{“United States”}</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2005</td>
+<td style="text-align: left;">Manmohan Singh</td>
+<td style="text-align: left;">{“United States”}</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2006</td>
+<td style="text-align: left;">Manmohan Singh</td>
+<td style="text-align: left;">{“United States of America”}</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2009</td>
+<td style="text-align: left;">Manmohan Singh</td>
+<td style="text-align: left;">{“United States”}</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">Narendra Modi</td>
+<td style="text-align: left;">{“United States”}</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<h2 id="wrap-up">Wrap-up</h2>
-<p>And so although a simple example, those are the basics of database design!</p>
-<p>In future posts, I’ll use the same database to explore other topics in the specialization, such as regular expressions, indexes, and JSON.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>The US actually only comes up in 10 speeches—most consistently during the Manmohan Singh era.</p>
+<h2 id="find-speech-lengths">Find speech lengths</h2>
+<p>If I wanted to do some text analysis on the speeches, the length of speeches might be a basic place to start. <code>char_length()</code> returns the number of characters in a string.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- the longest speeches by character length</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dt">year</span>, pm.name <span class="kw">AS</span> pm, party.name <span class="kw">AS</span> party, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  char_length(text.speech) <span class="kw">AS</span> speech_characters</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> pm <span class="kw">ON</span> corpus.pm_id <span class="op">=</span> pm.<span class="kw">id</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> party <span class="kw">ON</span> corpus.party_id <span class="op">=</span> party.<span class="kw">id</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> text <span class="kw">on</span> corpus.text_id <span class="op">=</span> text.<span class="kw">id</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> char_length(text.speech) <span class="kw">DESC</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 2: </span>5 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: left;">pm</th>
+<th style="text-align: left;">party</th>
+<th style="text-align: right;">speech_characters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2016</td>
+<td style="text-align: left;">Narendra Modi</td>
+<td style="text-align: left;">BJP</td>
+<td style="text-align: right;">62178</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2019</td>
+<td style="text-align: left;">Narendra Modi</td>
+<td style="text-align: left;">BJP</td>
+<td style="text-align: right;">52982</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2020</td>
+<td style="text-align: left;">Narendra Modi</td>
+<td style="text-align: left;">BJP</td>
+<td style="text-align: right;">50356</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2015</td>
+<td style="text-align: left;">Narendra Modi</td>
+<td style="text-align: left;">BJP</td>
+<td style="text-align: right;">49399</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2018</td>
+<td style="text-align: left;">Narendra Modi</td>
+<td style="text-align: left;">BJP</td>
+<td style="text-align: right;">47444</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>All of the longest speeches come from Narendra Modi. Instead of character lengths though, I’d usually be more interested in counting words, which requires a different table structure.</p>
+<h2 id="create-one-row-per-word">Create one row per word</h2>
+<p>I’ve previously done this kind of basic text analysis work in R using the {tidytext} package. However, the third course in the specialization demonstrated how PostgreSQL can handle routine NLP tasks like tokenization, stemming, and removing stopwords.</p>
+<p>Instead of using <code>tidytext::unnest_tokens()</code> to produce a table of one token per row, I used Postgres’ <code>string_to_array()</code> and <code>unnest()</code> functions, along with a lateral join to split the speeches on white space and create one row per word.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- https://stackoverflow.com/questions/29419993/split-column-into-multiple-rows-in-postgres</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> c.<span class="dt">year</span>, s.word</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus c</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> text t <span class="kw">ON</span> c.text_id <span class="op">=</span> t.<span class="kw">id</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">CROSS</span> <span class="kw">JOIN</span> LATERAL unnest(string_to_array(t.speech, <span class="st">&#39; &#39;</span>)) <span class="kw">AS</span> s(word)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> c.<span class="dt">year</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-3">Table 3: </span>5 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: left;">word</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">it</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">has</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">Fellow</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">countrymen,</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">been</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="find-the-most-frequent-words">Find the most frequent words</h2>
+<p>I can then use a simple group to find the most frequent words in the entire speech, or change the <code>GROUP BY</code> clause to find the most frequent words per speech.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- most popular words in entire corpus</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> s.token, <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus c</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> text t</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> c.text_id <span class="op">=</span> t.<span class="kw">id</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CROSS</span> <span class="kw">JOIN</span> LATERAL unnest(string_to_array(t.speech, <span class="st">&#39; &#39;</span>)) <span class="kw">AS</span> s(token)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> s.token</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">DESC</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 4: </span>5 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">token</th>
+<th style="text-align: right;">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">the</td>
+<td style="text-align: right;">11971</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">of</td>
+<td style="text-align: right;">8325</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">to</td>
+<td style="text-align: right;">7954</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">and</td>
+<td style="text-align: right;">6974</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">6624</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="find-distinct-words">Find distinct words</h2>
+<p>Without any basic preprocessing, this isn’t too interesting yet. To start, I first need to convert all text to lowercase; remove stop words; and apply stemming depending on the exact purpose.</p>
+<p>I can see that the entire corpus of speeches contains about 250k words, but only about 32k are distinct.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- total words in corpus</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> total_words, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> s.token) <span class="kw">AS</span> distinct_words</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus c</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> text t</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> c.text_id <span class="op">=</span> t.<span class="kw">id</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CROSS</span> <span class="kw">JOIN</span> LATERAL unnest(string_to_array(<span class="fu">LOWER</span>(t.speech), <span class="st">&#39; &#39;</span>)) <span class="kw">AS</span> s(token);</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-5">Table 5: </span>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">total_words</th>
+<th style="text-align: right;">distinct_words</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">251971</td>
+<td style="text-align: right;">32204</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>This difference, as explained in the specialization, is one reason you don’t want to store every word in your index!</p>
+<h2 id="counts-without-stop-words">Counts without stop words</h2>
+<p>Even these distinct words though include many words that don’t contain any meaning. For that, I need to remove stop words. PostgreSQL has built-in functions for all of this, but I can do it manually. First creating the table structure:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> stop_words;</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> stop_words (word TEXT <span class="kw">unique</span>);</span></code></pre></div>
+</div>
+<p>And then copying in a simple list found on GitHub.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- wget https://raw.githubusercontent.com/h2oai/h2o-tutorials/master/h2o-world-2017/nlp/stopwords.csv</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>\<span class="kw">copy</span> stop_words (word) <span class="kw">FROM</span> <span class="st">&#39;stopwords.csv&#39;</span> <span class="kw">WITH</span> DELIMITER <span class="st">&#39;,&#39;</span> CSV <span class="kw">HEADER</span>;</span></code></pre></div>
+</div>
+<p>I then can filter out stop words with a subquery before counting word frequencies again. Now it returns words of some value (though the list of stop words could be expanded).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> s.word, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(s.word)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> corpus c</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> text t</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> c.text_id <span class="op">=</span> t.<span class="kw">id</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CROSS</span> <span class="kw">JOIN</span> LATERAL unnest(string_to_array(<span class="fu">LOWER</span>(t.speech), <span class="st">&#39; &#39;</span>)) <span class="kw">AS</span> s(word)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> s.word <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> word <span class="kw">FROM</span> stop_words)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> s.word</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">COUNT</span>(s.word) <span class="kw">DESC</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-8">Table 6: </span>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">word</th>
+<th style="text-align: right;">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">6624</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">people</td>
+<td style="text-align: right;">1003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">country</td>
+<td style="text-align: right;">917</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">india</td>
+<td style="text-align: right;">902</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">also</td>
+<td style="text-align: right;">746</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">us</td>
+<td style="text-align: right;">659</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">new</td>
+<td style="text-align: right;">625</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">would</td>
+<td style="text-align: right;">600</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">one</td>
+<td style="text-align: right;">564</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">want</td>
+<td style="text-align: right;">455</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>*<em>I’m actually not sure why an empty space is the most frequent word…</em></p>
+<h2 id="count-stemmed-keywords">Count stemmed keywords</h2>
+<p>Another step forward would be to apply stemming to the keywords before counting them. This is a particularly important step if creating an index.</p>
+<p>The specialization showed how to create a kind of stem-to-keyword dictionary to demonstrate how it works. But to implement it on my own, it’s obviously much better to use the built-in features of PostgreSQL.</p>
+<p>PostgreSQL has a function <code>to_tsvector()</code> that turns a text string (like a speech) into an array that contains natural language features like stemming, stop words removal, etc.</p>
+<p>I’ll use this function to create a list of words that represent the speech document, and then apply <code>ts_stat()</code> to extract some information, like the most common keywords.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ts_stat(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  $$SELECT to_tsvector(<span class="st">&#39;english&#39;</span>, t.speech) </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> corpus c</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> text t</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> c.text_id <span class="op">=</span> t.id$$)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> nentry <span class="kw">DESC</span>, ndoc <span class="kw">DESC</span>, word</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-9">Table 7: </span>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">word</th>
+<th style="text-align: right;">ndoc</th>
+<th style="text-align: right;">nentry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">countri</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">2191</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">india</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">1753</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">peopl</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">1548</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">1112</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">993</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">also</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">922</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nation</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">869</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">govern</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">859</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">today</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">844</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">new</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">781</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Not surprisingly, patriotic words stems referring to “country”, “india”, “people”, and “nation” are the most common.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
     <span class="disqus-comments">
       <i class="fas fa-comments"></i>
       &nbsp;
-      <span class="disqus-comment-count" data-disqus-identifier="posts/2022-04-25-postgresql-database-design/">Comment on this article</span>
+      <span class="disqus-comment-count" data-disqus-identifier="posts/2022-05-01-text-data-in-postgresql/">Comment on this article</span>
     </span>
     <span class="article-sharing">
       Share: &nbsp;
-      <a href="https://twitter.com/share?text=PostgreSQL%20Database%20Design&amp;url=https%3A%2F%2Fsean.rbind.io%2Fposts%2F2022-04-25-postgresql-database-design%2F">
+      <a href="https://twitter.com/share?text=Text%20Data%20in%20PostgreSQL&amp;url=https%3A%2F%2Fsean.rbind.io%2Fposts%2F2022-05-01-text-data-in-postgresql%2F">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fsean.rbind.io%2Fposts%2F2022-04-25-postgresql-database-design%2F&amp;title=PostgreSQL%20Database%20Design">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fsean.rbind.io%2Fposts%2F2022-05-01-text-data-in-postgresql%2F&amp;title=Text%20Data%20in%20PostgreSQL">
         <i class="fab fa-linkedin"></i>
       </a>
     </span>
@@ -2935,8 +2892,8 @@ gtag('config', 'UA-120637374-1');
   <div id="disqus_thread" class="hidden"></div>
   <script type="text/javascript" cookie-consent="functionality">
 var disqus_config = function () {
-  this.page.url = 'https://sean.rbind.io/posts/2022-04-25-postgresql-database-design/';
-  this.page.identifier = 'posts/2022-04-25-postgresql-database-design/';
+  this.page.url = 'https://sean.rbind.io/posts/2022-05-01-text-data-in-postgresql/';
+  this.page.identifier = 'posts/2022-05-01-text-data-in-postgresql/';
 };
 (function() {
   var d = document, s = d.createElement('script');
