@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-09-01-functional-dependencies-and-relational-database-design/",
+    "title": "Functional Dependencies and Relational Database Design",
+    "description": "Determine functional dependencies to structure relations in third normal form.",
+    "author": [],
+    "date": "2022-09-01",
+    "categories": [
+      "SQL",
+      "relational database theory"
+    ],
+    "contents": "\n\nContents\nFunctional Dependencies\nNormal Forms\nSpeeches\nExample\n\nI recently completed the Databases\nfor Data Scientists specialization on Coursera from the University\nof Colorado Boulder. Most of the three courses in the specialization\nwere a review for me, but the Relational\nDatabase Design course covered normalization theory in greater\ndetail than I had previously seen.\nAlthough I was familiar with entity relationship diagrams and the\nbenefits of normalization as far as minimizing data redundancy, I had\nnot studied the more formal normalization process and the concept of\nfunctional dependencies.\nFunctional Dependencies\nIn a relation (a table), an attribute (a column) such as\n“date_of_birth” would always determine a column “zodiac_sign”. In other\nwords, “zodiac_sign” is functionally dependent on “date_of_birth”.\nKnowing these kinds of relationships between attributes forms the basis\nfor which attributes belong in a relation and which should be linked\ntogether with foreign keys.\nNormal Forms\nPreviously, I’ve focused primarily on minimizing data redundancy when\ndetermining what attributes belong in the same relation. Having a more\nformal system of first, second, and third normal forms adds structure to\nthis process.\nIn particular, the course introduced:\npartial functional dependencies—and how to remove them to\nrestructure a table from first to second normal form.\ntransitive functional dependencies—and how to remove them in order\nto restructure a table from second to third normal form.\nSpeeches Example\nIn a previous\nproject, I created a normalized PostgreSQL database from a CSV file\nof India’s Independence Day speeches. Spurred on by what I learned in\nthe PostgreSQL for Everybody\nspecialization, my goal was to store every string only once and link\ntables together with integer keys.\nERD for speech databaseNow armed with the terminology of relational database theory, I would\nnot change the database’s structure, but I can provide new\njustifications for why the design is “suitable”.\nFor every relation, the primary key determines all of the other\nattributes. For example, the corpus relation, can be\nrepresented as:\ncorpus (year (pk), pm_id(fk), party_id(fk), title_id(fk), footnote_id(fk), source_id(fk), url_id(fk), text_id(fk))\nIt has only one functional dependency, which could be written as:\nyear -> pm_id, party_id, title_id, footnote_id, source_id, url_id, text_id\nOf course, this is an overly simple example, but the principles can\nbe useful for working out more complicated situations.\n\n\n\n",
+    "preview": "posts/2022-09-01-functional-dependencies-and-relational-database-design/../2022-04-25-postgresql-database-design/img/featured.png",
+    "last_modified": "2022-08-29T21:24:06-04:00",
+    "input_file": "functional-dependencies-and-relational-database-design.knit.md",
+    "preview_width": 3520,
+    "preview_height": 1820
+  },
+  {
     "path": "posts/2022-05-01-text-data-in-postgresql/",
     "title": "Text Data in PostgreSQL",
     "description": "Use regular expressions and text analysis functions on India's Independence day speeches.",
